@@ -1,0 +1,17 @@
+<template name="home">
+
+<style type="text/css">
+body{
+	background-image: url("http://thumbs.dreamstime.com/z/recycle-design-over-pattern-background-vector-illustration-34868066.jpg"); 
+}
+</style>
+  <h1> Welcome to Do Not Throw Away </h1>
+   Personal App!
+   <br>
+  {{#if currentUser}}
+     <div class="col-md-5 col-md-offset-4">  <h1> Please go to items page to search</h1> </div> 
+  {{else}}
+
+  <div class="col-md-5 col-md-offset-4">  <h1> You Should log in to continue!!</h1> </div> 
+  {{/if}}
+</template>
