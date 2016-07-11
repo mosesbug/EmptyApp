@@ -33,21 +33,23 @@
   <br><br><br>
 
   <div class="container">
-    {{> yield}}
+<!--     {{> yield}} -->
   </div>
   {{else}}
-  <h2>Welcome to TheBestLanguageApp! Please log in or sign up.</h2>
-  <button type="button" class="btn btn-primary">Sign Up</button>
-  <button type="button" class="btn btn-success">Log In</button>
+
 
   {{/if}}
 
+  {{> yield}}
 
 
-
+{{#if currentUser}}
   <div class="navbar navbar-inverse navbar-fixed-bottom">
     <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a></p>
   </div>
+  {{else}}
+
+  {{/if}}
 
 
 
