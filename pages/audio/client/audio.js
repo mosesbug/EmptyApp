@@ -1,3 +1,24 @@
+/*
+  this is a somewhat hacked together program
+  which takes the javascript demo from this page
+    https://webaudiodemos.appspot.com/AudioRecorder/
+  and converts it to use in a meteor app...
+
+  This runs on firefox but to test on Chrome you need to use/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome  --user-data-dir=/tmp/foo --unsafely-treat-insecure-origin-as-secure=http://localhost:3000
+
+
+  the next thing I need to do is to write something
+  that processes the utterance, finds the beginning and ending
+  of the utterance, takes the middle third, and then
+  calculates the RMS.
+
+  when I get home I will try to hook this up to the
+  2 channel microphone with the accelerometer as one channel
+  and work on modifying this example to show both graphs
+*/
+
+
+
 Template.audio.helpers({
   recording: function(){
     const status = Recording.findOne();
@@ -39,7 +60,7 @@ function extract(data,h){
   const allRMS = rms(data);
   const vowelRMS =  rms(data.slice(10000+len/3,10000+2*len/3));
   const status = Recording.findOne();
-  Recording.update(status._id,
+  Recording.update(this._id,
     {$set:{rms:vowelRMS,recording:"not recording"}});
   console.log("rms = "+allRMS);
   console.log("vowel rms = "+vowelRMS);
@@ -269,7 +290,7 @@ function toggleRecording( e ) {
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
         const status = Recording.findOne();
-        Recording.update(status._id,{$set:{recording:"not recording"}});
+        Recording.update(this._id,{$set:{recording:"not recording"}});
     } else {
         // start recording
         if (!audioRecorder)
@@ -426,5 +447,4 @@ function initAudio() {
 }
 
 //window.addEventListener('load', initAudio );
-
 
