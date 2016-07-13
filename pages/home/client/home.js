@@ -1,8 +1,8 @@
 Template.login.events({
-  'submit .form-login': function(event){
+  'click .form-login': function(event){
     event.preventDefault();
-    var emailVar = $('[name=loginEmail]').val();
-    var passwordVar = $('[name=loginPassword]').val();
+    var emailVar = $('[name=username]').val();
+    var passwordVar = $('[name=password]').val();
     console.log("Form submitted");
     Meteor.loginWithPassword(emailVar, passwordVar);
     Router.go('home');
