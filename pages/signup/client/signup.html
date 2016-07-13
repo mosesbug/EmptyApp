@@ -1,3 +1,19 @@
 <template name="signup">
 <h1>Sign Up</h1>
+{{> register}}
+</template>
+
+
+
+
+<template name="register">
+  <form class="form-register">
+    <input type="email" name="js-email" value="registerEmail">
+    <input type="password" name="js-password" value="registerPassword">
+    <select name="usertype">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+    </select>
+    <input type="submit" value="Register">
+  </form>
 </template>
