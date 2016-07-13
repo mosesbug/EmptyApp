@@ -1,20 +1,32 @@
-if(Meteor.isClient){
+if(Meteor.isClient) {
 Template.register.events({
   'submit .form-register': function(event){
     event.preventDefault();
-    var emailVar = $('[name=js-name]').val();
+    var emailVar = $('[name=js-email]').val();
     var passwordVar = $('[name=js-password]').val();
-    //const typeVar = $('js-select').val();
-    console.log("Form submitted.");
+    console.dir(emailVar);
+    console.dir(passwordVar);
+
+
     Accounts.createUser({
       email: emailVar,
       password: passwordVar
+    }, function(error){
+      if(error){
+        console.log(error.reason);
+        return;
+      } else {
+        console.log("created Account")
+        Router.go('home');
+      }
 
-       });
+    });
 
-       Router.go('home');
+    console.log("accounts createuser...");
+
 
   }
+
 });
 
 Template.login.events({
@@ -27,5 +39,4 @@ Template.login.events({
     Router.go('home');
   }
 });
-
 }
