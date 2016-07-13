@@ -3,8 +3,34 @@
 <h1>Welcome to TheBestLanguageApp!</h1>
 
 
-<a href="/login"><button class="btn btn-primary" type="submit">Log In</button></a>
-<a href="/signup"><button class="btn btn-success" type="submit">Sign Up</button></a>
+{{#if currentUser}}
+  <p>You're logged in.</p>
+  {{else}}
+  {{> register}}
+  {{> login}}
 
+  <a href="/login"><button class="btn btn-primary" type="submit">Log In</button></a>
+  <a href="/signup"><button class="btn btn-success" type="submit">Sign Up</button></a>
+  {{/if}}
+</template>
 
+<template name="register">
+  <form class="form-register">
+    <input type="email" name="js-email" value="registerEmail">
+    <input type="password" name="js-password" value="registerPassword">
+    <select name="js-select">
+      <option value="Student">Student</option>
+      <option value="Teacher">Teacher</option>
+    </select>
+    <input type="submit" value="Register">
+  </form>
+
+</template>
+
+<template name="login">
+  <form class="form-login">
+    <input type="email" name="loginEmail">
+    <input type="password" name="loginPassword">
+    <input type="submit" value="Login">
+  </form>
 </template>
