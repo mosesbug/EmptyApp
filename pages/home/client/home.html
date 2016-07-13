@@ -6,7 +6,11 @@
 {{#if currentUser}}
   <p>You're logged in.</p>
   {{else}}
+
   {{> register}}
+  <br>
+  <br>
+  <br>
   {{> login}}
 
   <a href="/login"><button class="btn btn-primary" type="submit">Log In</button></a>
@@ -18,10 +22,6 @@
   <form class="form-register">
     <input type="email" name="js-email" value="registerEmail">
     <input type="password" name="js-password" value="registerPassword">
-    <select name="js-select">
-      <option value="Student">Student</option>
-      <option value="Teacher">Teacher</option>
-    </select>
     <input type="submit" value="Register">
   </form>
 
