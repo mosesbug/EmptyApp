@@ -14,3 +14,9 @@ Template.login.events({
     Router.go('home');
   }
 });
+
+Template.home.helpers({
+  allClasses: function(){
+    return Classes.find();
+  }
+});
