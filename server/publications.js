@@ -1,3 +1,3 @@
-Meteor.publish("displayClasses",function(){
-  Classes.find();
-})
+// Meteor.publish("displayClasses",function(){
+//   Classes.find();
+// })
