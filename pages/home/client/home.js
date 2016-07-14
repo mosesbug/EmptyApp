@@ -1,10 +1,16 @@
 Template.login.events({
-  'click .form-login': function(event){
+  'submit #loginform': function(event){
+    console.log("form clicked");
     event.preventDefault();
     var emailVar = $('[name=username]').val();
     var passwordVar = $('[name=password]').val();
-    console.log("Form submitted");
-    Meteor.loginWithPassword(emailVar, passwordVar);
+    console.dir(emailVar);
+    console.dir(passwordVar);
+    Meteor.loginWithPassword(emailVar, passwordVar, function(error){
+      if(error) {
+        console.log("login failed. Try again or create an account");
+      }
+    });
     Router.go('home');
   }
 });
