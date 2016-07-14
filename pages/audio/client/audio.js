@@ -130,8 +130,13 @@ DEALINGS IN THE SOFTWARE.
   var WORKER_PATH = '/recorderWorker.js';
 
 
+<<<<<<< HEAD
   
   
+=======
+
+
+>>>>>>> 8a0715dd5a6b9cd0d4ebc292d58b53ea91fe749e
 
   var Recorder = function(source, cfg){
     var config = cfg || {};
@@ -223,7 +228,7 @@ DEALINGS IN THE SOFTWARE.
     var link = document.getElementById("save");
     link.href = url;
     link.download = filename || 'output.wav';
-    
+
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
     Recordings.insert(newFile);
@@ -232,7 +237,7 @@ DEALINGS IN THE SOFTWARE.
     Urls.insert(url);
   }
 
-  
+
 
 
   window.Recorder = Recorder;
