@@ -129,6 +129,10 @@ DEALINGS IN THE SOFTWARE.
 
   var WORKER_PATH = '/recorderWorker.js';
 
+
+  
+  
+
   var Recorder = function(source, cfg){
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
@@ -219,7 +223,17 @@ DEALINGS IN THE SOFTWARE.
     var link = document.getElementById("save");
     link.href = url;
     link.download = filename || 'output.wav';
+    
+    var newFile= new FS.File(blob);
+    newFile.ownerId= this.userId;
+    Recordings.insert(newFile);
+    console.dir(Recordings.find());
+
+    Urls.insert(url);
   }
+
+  
+
 
   window.Recorder = Recorder;
 
