@@ -1,0 +1,13 @@
+<template name="showAudio">
+<br><br><br><br>
+<h1>Recordings</h1>
+
+{{#each a in audio}}
+<ul>
+<audio controls>
+
+	<source src="{{a.url}}" type="audio/wav">
+	</audio>
+	</ul>
+	{{/each}}
+</template>

@@ -21,3 +21,12 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 iron:router
 twbs:bootstrap
 accounts-password
+ian:accounts-ui-bootstrap-3
+maxencecornet:audio-recorder
+http
+reactive-dict
+autopublish
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
+insecure
