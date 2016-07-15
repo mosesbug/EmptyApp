@@ -1,0 +1,13 @@
+<template name="courses">
+
+	<h1>Courses</h1>
+
+	<a href="/createClass"><button type="submit" class="btn btn-primary pull-right js-create">Create Course</button></a>
+
+	{{#each c in courses}}
+		<br>
+		<a href="/showCourse/{{r._id}}">{{c.className}}</a>
+		<br>
+ 	{{/each}}
+
+ </template>
