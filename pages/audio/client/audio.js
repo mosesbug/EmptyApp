@@ -312,7 +312,7 @@ function toggleRecording( e ) {
         e.classList.add("recording");
         audioRecorder.clear();
         audioRecorder.record();
-        window.setTimeout(function(){toggleRecording(e);}, 2000);
+        window.setTimeout(function(){toggleRecording(e);}, 10000);
     }
 }
 
