@@ -132,7 +132,6 @@ DEALINGS IN THE SOFTWARE.
 
 
 
-
   var Recorder = function(source, cfg){
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
@@ -312,7 +311,7 @@ function toggleRecording( e ) {
         e.classList.add("recording");
         audioRecorder.clear();
         audioRecorder.record();
-        window.setTimeout(function(){toggleRecording(e);}, 2000);
+        window.setTimeout(function(){toggleRecording(e);}, 10000);
     }
 }
 
@@ -461,3 +460,4 @@ function initAudio() {
 }
 
 //window.addEventListener('load', initAudio );
+

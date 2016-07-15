@@ -3,6 +3,7 @@ Recordings.allow({
     // add custom authentication code here
     return true;
   }
+
 });
 
 // Template.displayHelper( 'displayHelper', () => {
