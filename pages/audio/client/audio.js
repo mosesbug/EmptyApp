@@ -130,13 +130,7 @@ DEALINGS IN THE SOFTWARE.
   var WORKER_PATH = '/recorderWorker.js';
 
 
-<<<<<<< HEAD
-  
-  
-=======
 
-
->>>>>>> 8a0715dd5a6b9cd0d4ebc292d58b53ea91fe749e
 
   var Recorder = function(source, cfg){
     var config = cfg || {};
@@ -317,7 +311,7 @@ function toggleRecording( e ) {
         e.classList.add("recording");
         audioRecorder.clear();
         audioRecorder.record();
-        window.setTimeout(function(){toggleRecording(e);}, 2000);
+        window.setTimeout(function(){toggleRecording(e);}, 10000);
     }
 }
 

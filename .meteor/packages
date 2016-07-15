@@ -33,3 +33,4 @@ autopublish
 cfs:standard-packages
 cfs:gridfs
 cfs:filesystem
+insecure
