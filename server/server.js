@@ -5,7 +5,3 @@ Recordings.allow({
   }
 
 });
-
-// Template.displayHelper( 'displayHelper', () => {
-//   return string.toUpperCase();
-// });

@@ -1,3 +1,5 @@
+
+
 Template.register.events({
   'submit #loginform': function(event){
     event.preventDefault();
@@ -11,6 +13,7 @@ Template.register.events({
     console.dir(typeVar);
     console.dir(firstNameVar);
     console.dir(lastNameVar);
+
 
 
     Accounts.createUser({
@@ -31,6 +34,10 @@ Template.register.events({
       }
 
     });
+
+
+
+
 
     console.log("accounts createuser...");
 
