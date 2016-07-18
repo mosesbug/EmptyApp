@@ -4,3 +4,11 @@ Template.courses.helpers({
 		return Courses.find();
 	},
 })
+
+Template.showcourse.helpers({
+	course:function(){
+		console.log("in comments");
+		console.log(this);
+		return Courses.find({className: this.className});
+	}
+})
