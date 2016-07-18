@@ -1,25 +1,6 @@
-/*
-  this is a somewhat hacked together program
-  which takes the javascript demo from this page
-    https://webaudiodemos.appspot.com/AudioRecorder/
-  and converts it to use in a meteor app...
+var File;
 
-  This runs on firefox but to test on Chrome you need to use/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome  --user-data-dir=/tmp/foo --unsafely-treat-insecure-origin-as-secure=http://localhost:3000
-
-
-  the next thing I need to do is to write something
-  that processes the utterance, finds the beginning and ending
-  of the utterance, takes the middle third, and then
-  calculates the RMS.
-
-  when I get home I will try to hook this up to the
-  2 channel microphone with the accelerometer as one channel
-  and work on modifying this example to show both graphs
-*/
-
-
-
-Template.audio.helpers({
+Template.createPost.helpers({
   recording: function(){
     const status = Recording.findOne();
     console.log("status='"+status.recording+"'"); console.dir(status);
@@ -32,14 +13,22 @@ Template.audio.helpers({
 
 let recordButton=null;
 
-Template.audio.onRendered(function(){
+Template.createPost.onRendered(function(){
   initAudio();
   recordButton = document.getElementById("record")
 })
 
-Template.audio.events({
+Template.createPost.events({
   "click #record": function(event){
     toggleRecording(document.getElementById("record"));
+  },
+  "click .js-submit": function(event){
+    event.preventDefault();
+    //const title= $(".js-title").val();
+    //const text= $(".js-text").val(); 
+    Recordings.insert(File);
+    //console.dir(blob);
+    Router.go('/posts');
   }
 })
 
@@ -218,17 +207,19 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.setupDownload = function(blob, filename){
-    var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    var link = document.getElementById("save");
-    link.href = url;
-    link.download = filename || 'output.wav';
+   // var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    //var link = document.getElementById("save");
+    //link.href = url;
+    //link.download = filename || 'output.wav';
 
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
-    Recordings.insert(newFile);
-    console.dir(Recordings.find());
+    File=newFile;
+    
+    //Recordings.insert(newFile);
+    //console.dir(Recordings.find());
 
-   
+    
   }
 
 
@@ -302,6 +293,10 @@ function toggleRecording( e ) {
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
+        var blob=e.data;
+
+        
+
         const status = Recording.findOne();
         Recording.update(this._id,{$set:{recording:"not recording"}});
     } else {
@@ -434,30 +429,4 @@ function initAudio() {
                    alert('Error getting audio');
                    console.log(e);
                });
-/*
-    navigator.getUserMedia(
-        {
-
-          "audio": {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
-            },
-
-
-        }, gotStream, function(e) {
-            alert('Error getting audio');
-            console.log(e);
-        });
-
-        */
-
-
 }
-
-//window.addEventListener('load', initAudio );
-

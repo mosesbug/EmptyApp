@@ -1,18 +1,15 @@
-<template name="comments">
-
+<template name="posts">
+<br><br><br>
   {{#if currentUser}}
-	<input type="text" class="js-user-comment">
-	<br>
-	<select class="js-rating-comment">
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-		<option>5</option>
-	</select>
-	<br>
+	<div class="form-group">
+  		<label for="comment"></label>
+  		<textarea class="js-user-comment form-control" rows="5" id="comment"></textarea>
+	</div>
 	<button class="js-submit-comment btn btn-lg btn-info">
 		Submit Comment
+	</button>
+	<button class="js-create-post btn btn-lg btn-info">
+		Create Post
 	</button>
   {{else}}
 	<h2>You must log in to make comments!</h2>
@@ -23,8 +20,19 @@
 	{{#each c in commentsdata}}
 	   {{> commentRow  comment=c}}
 	{{/each}}
+</ul>
+{{#each p in posts}}
+<ul>
+	<audio controls>
+
+
+
+	<source src="{{p.url}}" type="audio/wav"> 
+
+	</audio>
 
     </ul>
+   {{/each}}
 </template>
 
 <template name="commentRow">

@@ -21,6 +21,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 iron:router
 twbs:bootstrap
 accounts-password
+
+accounts-google
+
+
 ian:accounts-ui-bootstrap-3
 maxencecornet:audio-recorder
 http

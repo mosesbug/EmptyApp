@@ -20,3 +20,15 @@ Template.home.helpers({
     return Classes.find();
   }
 });
+
+Template.registerHelper('checkType', () => {
+
+  if(Meteor.user() && Meteor.user().profile.userType === "teacher") {
+      return true;
+  }
+
+  return false;
+
+
+
+});
