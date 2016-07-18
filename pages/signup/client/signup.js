@@ -8,13 +8,6 @@ Template.register.events({
     var firstNameVar = $('[name=firstname]').val();
     var lastNameVar = $('[name=lastname]').val();
     var typeVar = $('[name=usertype]').val();
-    console.dir(emailVar);
-    console.dir(passwordVar);
-    console.dir(typeVar);
-    console.dir(firstNameVar);
-    console.dir(lastNameVar);
-
-
 
     Accounts.createUser({
       email: emailVar,
@@ -22,7 +15,8 @@ Template.register.events({
       profile: {
         firstName: firstNameVar,
         lastName: lastNameVar,
-        userType: typeVar
+        userType: typeVar,
+        classes: []
       }
     }, function(error){
       if(error){
