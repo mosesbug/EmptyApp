@@ -12,3 +12,14 @@ Template.showcourse.helpers({
 		return Courses.find({className: this.className});
 	}
 })
+
+Template.showcourse.events({
+	"click .js-join": function(event){
+		event.preventDefault();
+	 	console.log("worked");
+
+
+	 	//this is where you add class object to user profile class field
+	 	//Meteor.user().profile.c
+	}
+})
