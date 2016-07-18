@@ -1,5 +1,6 @@
 
 
+
 Template.register.events({
   'submit #loginform': function(event){
     event.preventDefault();
@@ -22,7 +23,7 @@ Template.register.events({
       profile: {
         firstName: firstNameVar,
         lastName: lastNameVar,
-        userType: typeVar
+        userType: typeVar,
       }
     }, function(error){
       if(error){
