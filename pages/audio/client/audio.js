@@ -228,7 +228,7 @@ DEALINGS IN THE SOFTWARE.
     Recordings.insert(newFile);
     console.dir(Recordings.find());
 
-    Urls.insert(url);
+   
   }
 
 

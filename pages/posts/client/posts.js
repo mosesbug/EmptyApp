@@ -1,6 +1,10 @@
 Template.posts.helpers({
 	commentsdata: function(){
 		return Comments.find({},{sort:{createdAt:-1}, limit:30000});},
+
+	posts: function(){
+		return Recordings.find();
+	}
 	
 	
 })
