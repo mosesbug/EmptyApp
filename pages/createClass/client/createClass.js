@@ -7,9 +7,12 @@ Template.createClass.events({
 		const language = $(".js-language").val();
 		const description = $(".js-description").val();
 
-		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description};
+		// const instructor = 
+
+		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructor:instructor};
 
 		console.dir(course);
 		Courses.insert(course);
+		Router.go( "/courses");
 	},
 })
