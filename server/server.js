@@ -5,4 +5,3 @@ Recordings.allow({
   }
 
 });
-
