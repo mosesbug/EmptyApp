@@ -29,6 +29,4 @@ Template.registerHelper('checkType', () => {
 
   return false;
 
-
-
 });
