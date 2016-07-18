@@ -20,8 +20,19 @@
 	{{#each c in commentsdata}}
 	   {{> commentRow  comment=c}}
 	{{/each}}
+</ul>
+{{#each p in posts}}
+<ul>
+	<audio controls>
+
+
+
+	<source src="{{p.url}}" type="audio/wav"> 
+
+	</audio>
 
     </ul>
+   {{/each}}
 </template>
 
 <template name="commentRow">
