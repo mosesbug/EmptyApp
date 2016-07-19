@@ -32,6 +32,39 @@ Template.createPost.events({
   }
 })
 
+Template.audio.helpers({
+  recording: function(){
+    const status = Recording.findOne();
+    console.log("status='"+status.recording+"'"); console.dir(status);
+    if (status.recording == true){
+      toggleRecording(recordButton);
+    }
+    return status;
+  }
+})
+
+//let recordButton=null;
+
+Template.audio.onRendered(function(){
+  initAudio();
+  recordButton = document.getElementById("record")
+})
+
+Template.audio.events({
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
+  },
+  "click .js-submit": function(event){
+    event.preventDefault();
+    //const title= $(".js-title").val();
+    //const text= $(".js-text").val(); 
+    Recordings.insert(File);
+    //console.dir(blob);
+    Router.go('/posts');
+  }
+
+})
+
 function extract(data,h){
   // this returns the slice of the data whose absolute value
   // is at least h
@@ -207,10 +240,10 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.setupDownload = function(blob, filename){
-   // var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    //var link = document.getElementById("save");
-    //link.href = url;
-    //link.download = filename || 'output.wav';
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    var link = document.getElementById("save");
+    link.href = url;
+    link.download = filename || 'output.wav';
 
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
