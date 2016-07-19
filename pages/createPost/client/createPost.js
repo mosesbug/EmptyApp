@@ -71,6 +71,44 @@ Template.audio.events({
 
 })
 
+Template.createAssignment.helpers({
+  recording: function(){
+    const status = Recording.findOne();
+    console.log("status='"+status.recording+"'"); console.dir(status);
+    if (status.recording == true){
+      toggleRecording(recordButton);
+    }
+    return status;
+  }
+})
+
+
+
+Template.createAssignment.onRendered(function(){
+  initAudio();
+  recordButton = document.getElementById("record")
+})
+
+Template.createAssignment.events({
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
+  },
+  "click .js-submit": function(event){
+    event.preventDefault();
+    const title= $(".js-title").val();
+    const text= $(".js-text").val(); 
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      title:title,
+      text:text
+    }
+
+    Assignments.insert(File);
+    //console.dir(blob);
+    Router.go('/coursePage');
+  }
+})
+
 function extract(data,h){
   // this returns the slice of the data whose absolute value
   // is at least h
