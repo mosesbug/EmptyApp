@@ -97,15 +97,17 @@ Template.createAssignment.events({
     event.preventDefault();
     const title= $(".js-title").val();
     const text= $(".js-text").val(); 
+    console.dir(this._id);
     File.metadata= {
       ownerId:Meteor.userId(),
       title:title,
-      text:text
+      text:text,
+      course:this._id
     }
 
     Assignments.insert(File);
     //console.dir(blob);
-    Router.go('/coursePage');
+    Router.go('/coursePage/'+this._id);
   }
 })
 

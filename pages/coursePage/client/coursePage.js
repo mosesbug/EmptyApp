@@ -13,7 +13,7 @@ Template.coursePage.helpers({
 	//},
 
 	assignments: function(){
-		return Assignments.find();
+		return Assignments.find({"metadata.course": this._id});
 	}
 })
 
