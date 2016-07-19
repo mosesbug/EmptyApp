@@ -19,6 +19,6 @@ Template.coursePage.helpers({
 
 Template.coursePage.events({
 	"click .js-create-assignment": function(event){
-		Router.go('/createAssignment');
+		Router.go("/createAssignment/"+this._id);
 	}
 })
