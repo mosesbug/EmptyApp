@@ -12,7 +12,7 @@ Template.createClass.events({
 		const instructorLast = instructor.profile.lastName;
 
 
-		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast};
+		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
 
 		console.dir(course);
 		Courses.insert(course);

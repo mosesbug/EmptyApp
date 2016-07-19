@@ -8,7 +8,7 @@
 Template.coursePage.helpers({
 	course:function(){
 		console.log("in comments");
-		console.log(this);
+		//console.log(this);
 		return Courses.find({className: this.className});
 	}
 })

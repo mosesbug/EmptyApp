@@ -18,8 +18,10 @@ Template.showcourse.events({
 		event.preventDefault();
 	 	console.log("worked");
 
+	 	Router.go("/coursePage/"+this._id);
+
 
 	 	//this is where you add class object to user profile class field
-	 	//Meteor.user().profile.c
+	 	// Meteor.user().profile.classes += class;
 	}
 })
