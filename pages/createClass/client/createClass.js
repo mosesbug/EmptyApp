@@ -11,11 +11,19 @@ Template.createClass.events({
 		const instructorFirst = instructor.profile.firstName;
 		const instructorLast = instructor.profile.lastName;
 
+		if (className == "" || collegeUniversity == "" || language == "" || description == "") {
+			window.alert("Uh oh, one or more fields are empty!")
+		} else {
 
-		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
+			const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
 
-		console.dir(course);
-		Courses.insert(course);
-		Router.go( "/courses");
+			console.dir(course);
+			Courses.insert(course);
+			Router.go( "/courses");
+
+		}
+
+
+
 	},
 })
