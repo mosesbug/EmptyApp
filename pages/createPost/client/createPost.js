@@ -24,8 +24,14 @@ Template.createPost.events({
   },
   "click .js-submit": function(event){
     event.preventDefault();
-    //const title= $(".js-title").val();
-    //const text= $(".js-text").val(); 
+    const title= $(".js-title").val();
+    const text= $(".js-text").val(); 
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      title:title,
+      text:text
+    }
+
     Recordings.insert(File);
     //console.dir(blob);
     Router.go('/posts');

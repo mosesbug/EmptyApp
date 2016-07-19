@@ -8,8 +8,12 @@ Template.posts.helpers({
 	}
 	
 	
+})
 
-
+Template.showPost.helpers({
+	posts: function(){
+		return Recordings.find();
+	}
 
 })
 
