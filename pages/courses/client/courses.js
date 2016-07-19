@@ -25,5 +25,23 @@ Template.showcourse.events({
 	 	Router.go("/coursePage/"+this._id);
 
 
+	 	//this is where you add class object to user profile class field
+	 	//Meteor.user().profile.c
+	},
+
+	"click #js-remove": function(event){
+		event.preventDefault();
+		console.log("Clicked the remove button");
+
+		if(Meteor.user() && Meteor.userId() === this.instructor._id ) {
+			Courses.remove({_id: this._id});
+			Router.go("/courses");
+		} else {
+			console.log("you don't have access to delete this class");
+		}
+
+
+
 	}
+
 })

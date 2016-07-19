@@ -1,42 +1,23 @@
-var File;
+/*
+  this is a somewhat hacked together program
+  which takes the javascript demo from this page
+    https://webaudiodemos.appspot.com/AudioRecorder/
+  and converts it to use in a meteor app...
 
-Template.createPost.helpers({
-  recording: function(){
-    const status = Recording.findOne();
-    console.log("status='"+status.recording+"'"); console.dir(status);
-    if (status.recording == true){
-      toggleRecording(recordButton);
-    }
-    return status;
-  }
-})
+  This runs on firefox but to test on Chrome you need to use/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome  --user-data-dir=/tmp/foo --unsafely-treat-insecure-origin-as-secure=http://localhost:3000
 
-let recordButton=null;
 
-Template.createPost.onRendered(function(){
-  initAudio();
-  recordButton = document.getElementById("record")
-})
+  the next thing I need to do is to write something
+  that processes the utterance, finds the beginning and ending
+  of the utterance, takes the middle third, and then
+  calculates the RMS.
 
-Template.createPost.events({
-  "click #record": function(event){
-    toggleRecording(document.getElementById("record"));
-  },
-  "click .js-submit": function(event){
-    event.preventDefault();
-    const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
-    File.metadata= {
-      ownerId:Meteor.userId(),
-      title:title,
-      text:text
-    }
+  when I get home I will try to hook this up to the
+  2 channel microphone with the accelerometer as one channel
+  and work on modifying this example to show both graphs
+*/
 
-    Recordings.insert(File);
-    //console.dir(blob);
-    Router.go('/posts');
-  }
-})
+
 
 Template.audio.helpers({
   recording: function(){
@@ -49,7 +30,7 @@ Template.audio.helpers({
   }
 })
 
-//let recordButton=null;
+let recordButton=null;
 
 Template.audio.onRendered(function(){
   initAudio();
@@ -59,54 +40,19 @@ Template.audio.onRendered(function(){
 Template.audio.events({
   "click #record": function(event){
     toggleRecording(document.getElementById("record"));
+
   },
-  "click .js-submit": function(event){
+
+  "click .test-submit": function(event){
     event.preventDefault();
-    //const title= $(".js-title").val();
-    //const text= $(".js-text").val(); 
+    console.log("Leaving Tokyo");
     Recordings.insert(File);
     //console.dir(blob);
     Router.go('/posts');
   }
 
-})
-
-Template.createAssignment.helpers({
-  recording: function(){
-    const status = Recording.findOne();
-    console.log("status='"+status.recording+"'"); console.dir(status);
-    if (status.recording == true){
-      toggleRecording(recordButton);
-    }
-    return status;
-  }
-})
 
 
-
-Template.createAssignment.onRendered(function(){
-  initAudio();
-  recordButton = document.getElementById("record")
-})
-
-Template.createAssignment.events({
-  "click #record": function(event){
-    toggleRecording(document.getElementById("record"));
-  },
-  "click .js-submit": function(event){
-    event.preventDefault();
-    const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
-    File.metadata= {
-      ownerId:Meteor.userId(),
-      title:title,
-      text:text
-    }
-
-    Assignments.insert(File);
-    //console.dir(blob);
-    Router.go('/coursePage');
-  }
 })
 
 function extract(data,h){
@@ -291,12 +237,10 @@ DEALINGS IN THE SOFTWARE.
 
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
-    File=newFile;
-    
-    //Recordings.insert(newFile);
-    //console.dir(Recordings.find());
+    Recordings.insert(newFile);
+    console.dir(Recordings.find());
 
-    
+
   }
 
 
@@ -370,10 +314,6 @@ function toggleRecording( e ) {
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
-        var blob=e.data;
-
-        
-
         const status = Recording.findOne();
         Recording.update(this._id,{$set:{recording:"not recording"}});
     } else {
@@ -506,4 +446,29 @@ function initAudio() {
                    alert('Error getting audio');
                    console.log(e);
                });
+/*
+    navigator.getUserMedia(
+        {
+
+          "audio": {
+                "mandatory": {
+                    "googEchoCancellation": "false",
+                    "googAutoGainControl": "false",
+                    "googNoiseSuppression": "false",
+                    "googHighpassFilter": "false"
+                },
+                "optional": []
+            },
+
+
+        }, gotStream, function(e) {
+            alert('Error getting audio');
+            console.log(e);
+        });
+
+        */
+
+
 }
+
+//window.addEventListener('load', initAudio );

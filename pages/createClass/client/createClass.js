@@ -23,7 +23,5 @@ Template.createClass.events({
 
 		}
 
-
-
 	},
 })
