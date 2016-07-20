@@ -36,11 +36,10 @@ Template.showcourse.events({
 
 
 
-//	 	Router.go("/coursePage/"+this._id);
+
+	 	Router.go("/coursePage/"+this._id);
 
 
-	 	//this is where you add class object to user profile class field
-	 	//Meteor.user().profile.c
 	},
 
 	"click #js-remove": function(event){
