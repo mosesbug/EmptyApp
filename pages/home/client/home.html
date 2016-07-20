@@ -4,9 +4,20 @@
   <h1>You're logged in.</h1>
 
   <h3>My classes</h3>
+  {{#if checkType}}
+    {{#each course in myClassesTeacher}}
+      {{>myClassesTeacherRow courses=course}}
+    {{/each}}
+  {{else}}
+    {{#each class in myClasses}}
+     {{>myClassesRow c=class}}
+    {{/each}}
+  {{/if}}
   <br><br><br>
   <h3>List of classes</h3>
-  {{allClasses}}
+  {{#each class in allClasses}}
+    {{>allClassesRow c=class}}
+  {{/each}}
 
 
 
@@ -16,6 +27,24 @@
   <!-- <a href="/login"><button class="btn btn-primary" type="submit">Log In</button></a> -->
   <!-- <a href="/signup"><button class="btn btn-success" type="submit">Sign Up</button></a> -->
   {{/if}}
+</template>
+
+<template name="myClassesRow">
+  <ul>
+    <li><a href="/coursePage/{{c}}">{{c}}</a></li>
+  </ul>
+</template>
+
+<template name="myClassesTeacherRow">
+  <ul>
+    <li><a href="/coursePage/{{courses._id}}">{{courses.className}}</a></li>
+  </ul>
+</template>
+
+<template name="allClassesRow">
+  <ul>
+    <li><a href="/coursePage/{{c._id}}">{{c.className}}</a></li>
+  </ul>
 </template>
 
 <template name="login">
