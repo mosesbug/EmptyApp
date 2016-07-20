@@ -41,7 +41,7 @@ Template.showcourse.events({
 			}
 
 
-		Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": "abc" }});
+		Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": this._id }});
 
 		console.log("updated successfully");
 

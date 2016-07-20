@@ -17,8 +17,16 @@ Template.login.events({
 
 Template.home.helpers({
   allClasses: function(){
-    return Classes.find();
-  }
+    return Courses.find();
+  },
+
+  myClasses: function(){
+    return Meteor.user().profile.classes;
+  },
+
+  myClassesTeacher: function(){
+    return Courses.find({'instructor': Meteor.users.findOne({'_id': Meteor.userId()})});
+  },
 });
 
 Template.registerHelper('checkType', () => {
