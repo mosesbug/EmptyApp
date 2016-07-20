@@ -22,6 +22,5 @@ Template.createClass.events({
 			Router.go( "/courses");
 
 		}
-
 	},
 })
