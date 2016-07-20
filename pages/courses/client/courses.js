@@ -16,9 +16,9 @@ Template.showcourse.helpers({
 Template.showcourse.events({
 	"click .js-join": function(event){
 		event.preventDefault();
-		console.log(this._id);
+		
 
-			var numClasses = Meteor.user().profile.classes.length
+			var numClasses = Meteor.user().profile.classes.length;
 			for(i = 0; i < numClasses; i++) {
 				if(Meteor.user().profile.classes[i]===this._id) {
 					console.log("you've already added the class")
