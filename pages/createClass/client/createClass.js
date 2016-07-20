@@ -8,7 +8,6 @@ Template.createClass.events({
 		const description = $(".js-description").val();
 
 		//if (Meteor.user())  {}
-		console.dir(this.userId)
 
 		// const instructor = Accounts.findOne({'_id': })
 
