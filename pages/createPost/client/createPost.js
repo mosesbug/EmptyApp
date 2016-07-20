@@ -24,11 +24,90 @@ Template.createPost.events({
   },
   "click .js-submit": function(event){
     event.preventDefault();
+    const title= $(".js-title").val();
+    const text= $(".js-text").val(); 
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      title:title,
+      text:text
+    }
+
+    Recordings.insert(File);
+    //console.dir(blob);
+    Router.go('/posts');
+  }
+})
+
+Template.audio.helpers({
+  recording: function(){
+    const status = Recording.findOne();
+    console.log("status='"+status.recording+"'"); console.dir(status);
+    if (status.recording == true){
+      toggleRecording(recordButton);
+    }
+    return status;
+  }
+})
+
+//let recordButton=null;
+
+Template.audio.onRendered(function(){
+  initAudio();
+  recordButton = document.getElementById("record")
+})
+
+Template.audio.events({
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
+  },
+  "click .js-submit": function(event){
+    event.preventDefault();
     //const title= $(".js-title").val();
     //const text= $(".js-text").val(); 
     Recordings.insert(File);
     //console.dir(blob);
     Router.go('/posts');
+  }
+
+})
+
+Template.createAssignment.helpers({
+  recording: function(){
+    const status = Recording.findOne();
+    console.log("status='"+status.recording+"'"); console.dir(status);
+    if (status.recording == true){
+      toggleRecording(recordButton);
+    }
+    return status;
+  }
+})
+
+
+
+Template.createAssignment.onRendered(function(){
+  initAudio();
+  recordButton = document.getElementById("record")
+})
+
+Template.createAssignment.events({
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
+  },
+  "click .js-submit": function(event){
+    event.preventDefault();
+    const title= $(".js-title").val();
+    const text= $(".js-text").val(); 
+    console.dir(this._id);
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      title:title,
+      text:text,
+      course:this._id
+    }
+
+    Assignments.insert(File);
+    //console.dir(blob);
+    Router.go('/coursePage/'+this._id);
   }
 })
 
@@ -207,10 +286,10 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.setupDownload = function(blob, filename){
-   // var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    //var link = document.getElementById("save");
-    //link.href = url;
-    //link.download = filename || 'output.wav';
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    var link = document.getElementById("save");
+    link.href = url;
+    link.download = filename || 'output.wav';
 
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;

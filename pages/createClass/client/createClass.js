@@ -7,15 +7,20 @@ Template.createClass.events({
 		const language = $(".js-language").val();
 		const description = $(".js-description").val();
 
-		//if (Meteor.user())  {}
+		const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
+		const instructorFirst = instructor.profile.firstName;
+		const instructorLast = instructor.profile.lastName;
 
-		// const instructor = Accounts.findOne({'_id': })
+		if (className == "" || collegeUniversity == "" || language == "" || description == "") {
+			window.alert("Uh oh, one or more fields are empty!")
+		} else {
 
-		// this.userId, Meteor.user()._id
+			const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
 
-		const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description};
+			console.dir(course);
+			Courses.insert(course);
+			Router.go( "/courses");
 
-		console.dir(course);
-		Courses.insert(course);
+		}
 	},
 })

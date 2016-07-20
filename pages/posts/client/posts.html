@@ -23,17 +23,14 @@
 </ul>
 {{#each p in posts}}
 <ul>
-	<audio controls>
-
-
-
-	<source src="{{p.url}}" type="audio/wav"> 
-
-	</audio>
+	<a href="/showPost/{{p._id}}"> {{p.metadata.title}}</a>
+	
 
     </ul>
    {{/each}}
+<br><br><br>
 </template>
+
 
 <template name="commentRow">
 	 <li> [{{comment.rating}}] {{comment.createdAt}}: {{ comment.text}} : {{comment.userEmail}}
@@ -41,3 +38,19 @@
        </span>
 	  </li>
 </template>
+
+<template name="showPost">
+	<h1> {{metadata.title}}</h1>
+	{{metadata.text}}<br>
+	<audio controls>
+
+
+
+	<source src="{{url}}" type="audio/wav">
+
+	</audio>
+
+</template>
+
+
+

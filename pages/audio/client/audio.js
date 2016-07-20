@@ -40,7 +40,19 @@ Template.audio.onRendered(function(){
 Template.audio.events({
   "click #record": function(event){
     toggleRecording(document.getElementById("record"));
+
+  },
+
+  "click .test-submit": function(event){
+    event.preventDefault();
+    console.log("Leaving Tokyo");
+    Recordings.insert(File);
+    //console.dir(blob);
+    Router.go('/posts');
   }
+
+
+
 })
 
 function extract(data,h){
@@ -228,7 +240,7 @@ DEALINGS IN THE SOFTWARE.
     Recordings.insert(newFile);
     console.dir(Recordings.find());
 
-   
+
   }
 
 
@@ -460,4 +472,3 @@ function initAudio() {
 }
 
 //window.addEventListener('load', initAudio );
-

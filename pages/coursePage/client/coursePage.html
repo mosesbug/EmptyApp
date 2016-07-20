@@ -1,0 +1,40 @@
+<template name="coursePage">
+
+	<div class="jumbotron">
+		
+		<h1>{{className}}</h1>
+		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
+		<br>
+		<p>{{description}}</p>
+		
+	</div>
+
+	<h1>Assignments</h1>
+	{{#each a in assignments}}
+
+<ul>
+	<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
+	
+
+    </ul>
+   {{/each}}
+
+	<button class="js-create-assignment pull-right btn btn-lg btn-info">
+		Create Assignment
+	</button>
+
+</template>
+
+<template name="showAssignment">
+	<h1> {{metadata.title}}</h1>
+	{{metadata.text}}<br>
+	<audio controls>
+
+
+
+	<source src="{{url}}" type="audio/wav">
+
+	</audio>
+
+</template>
+
