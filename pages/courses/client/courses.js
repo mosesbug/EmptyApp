@@ -16,9 +16,27 @@ Template.showcourse.helpers({
 Template.showcourse.events({
 	"click .js-join": function(event){
 		event.preventDefault();
-	 	console.log("worked");
+		console.log(this._id);
 
-	 	Router.go("/coursePage/"+this._id);
+			var numClasses = Meteor.user().profile.classes.length
+			for(i = 0; i < numClasses; i++) {
+				if(Meteor.user().profile.classes[i]===this._id) {
+					console.log("you've already added the class")
+					throw new UserException("Invalid");
+
+				}
+
+			}
+
+
+		Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": this._id }});
+
+		console.log("updated successfully");
+
+
+
+
+//	 	Router.go("/coursePage/"+this._id);
 
 
 	 	//this is where you add class object to user profile class field
