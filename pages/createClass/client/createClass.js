@@ -19,7 +19,7 @@ Template.createClass.events({
 
 			console.dir(course);
 			Courses.insert(course);
-			Router.go( "/courses");
+			Router.go( "/");
 
 		}
 	},

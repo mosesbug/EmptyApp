@@ -12,16 +12,19 @@
 	<h1>Assignments</h1>
 	{{#each a in assignments}}
 
-<ul>
-	<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
-	
+	<ul>
+		<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
+		
 
-    </ul>
-   {{/each}}
+	</ul>
+	{{/each}}
 
+
+	{{#if checkType}}
 	<button class="js-create-assignment pull-right btn btn-lg btn-info">
 		Create Assignment
 	</button>
+	{{/if}}
 
 </template>
 
@@ -32,9 +35,9 @@
 
 
 
-	<source src="{{url}}" type="audio/wav">
+		<source src="{{url}}" type="audio/wav">
 
-	</audio>
+		</audio>
 
-</template>
+	</template>
 
