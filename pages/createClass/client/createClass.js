@@ -26,6 +26,9 @@ Template.createClass.events({
 
 			Courses.insert(course);
 
+			Router.go( "/");
+
+
 			var theCourseObject = Courses.findOne({className: className,
 																	 collegeUniversity:collegeUniversity,
 																	 language:language,
