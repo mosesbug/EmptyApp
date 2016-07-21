@@ -27,6 +27,7 @@ Template.showcourse.helpers({
 Template.showcourse.events({
 	"click .js-join": function(event){
 		event.preventDefault();
+
 			var numClasses = Meteor.user().profile.classes.length;
 			for(i = 0; i < numClasses; i++) {
 				if(Meteor.user().profile.classes[i]===this._id) {
