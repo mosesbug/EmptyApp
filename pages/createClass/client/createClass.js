@@ -1,4 +1,18 @@
+
+Template.createClass.helpers({
+	languages:function(){
+		return Languages.find({},{sort:{name:1}});
+	},
+
+	schools:function(){
+		return Schools.find({},{sort:{name:1}});
+	}
+})
+
+
 Template.createClass.events({
+
+
 	 "click .js-create": function(event){
 	 	event.preventDefault();
 	 	console.log("worked");
