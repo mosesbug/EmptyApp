@@ -1,5 +1,6 @@
 
 
+
 Template.register.events({
   'submit #loginform': function(event){
     event.preventDefault();
