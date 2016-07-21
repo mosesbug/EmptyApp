@@ -228,7 +228,7 @@ DEALINGS IN THE SOFTWARE.
     Recordings.insert(newFile);
     console.dir(Recordings.find());
 
-    Urls.insert(url);
+    
   }
 
 
@@ -434,8 +434,8 @@ function initAudio() {
                    alert('Error getting audio');
                    console.log(e);
                });
-/*
-    navigator.getUserMedia(
+
+   /*navigator.getUserMedia(
         {
 
           "audio": {
