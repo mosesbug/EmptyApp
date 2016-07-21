@@ -1,4 +1,5 @@
 <template name="courses">
+
 	<h1>Courses</h1>
 
 
@@ -25,12 +26,23 @@
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
 		<p>{{description}}</p>
+		<br>
+
+
 
 		{{#if checkType}}
 
-		<p>Teachers may not join courses</p>
+
+		{{#if checkMyCourse}}
 		<br>
+		<p>You are the teacher for this course</p>
 		<button type="button" class="btn btn-primary" id="js-remove">Remove</button>
+		{{else}}
+
+		<p>Teachers may not join courses; Please login in as Student</p>
+
+		{{/if}}
+
 
 
 	{{else}}

@@ -18,9 +18,78 @@ Template.createClass.events({
 			const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
 
 			console.dir(course);
+
+			if(Courses.findOne({className: className })) {
+				console.log("the class is already existed");
+				throw new UserException("Invalid");
+			}
+
 			Courses.insert(course);
+
+			Router.go( "/");
+
+
+			var theCourseObject = Courses.findOne({className: className,
+																	 collegeUniversity:collegeUniversity,
+																	 language:language,
+																	 description:description,
+																	 instructorFirst:instructorFirst,
+																	 instructorLast:instructorLast,
+																	 instructor:instructor
+		});
+
+
+			var numClasses = Meteor.user().profile.classes.length;
+
+
+
+
+
+
+		Meteor.users.update(Meteor.userId(), {$push: {'profile.classes': theCourseObject._id }});
+
+		console.log("created a class successfully");
+
+
+
+
+
+		Router.go("/coursePage/"+this._id);
+
+
+
+
+
 			Router.go( "/courses");
 
 		}
 	},
 })
+
+
+// "click .js-join": function(event){
+// 	event.preventDefault();
+// 	console.log(this._id);
+//
+//
+// 		var numClasses = Meteor.user().profile.classes.length;
+// 		for(i = 0; i < numClasses; i++) {
+// 			if(Meteor.user().profile.classes[i]===this._id) {
+// 				console.log("you've already added the class")
+// 				Router.go("/coursePage/"+this._id);
+// 				throw new UserException("Invalid");
+//
+// 			}
+//
+// 		}
+//
+//
+// 	Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": this._id }});
+//
+// 	console.log("created a class successfully");
+//
+//
+//
+//
+//
+// 	Router.go("/coursePage/"+this._id);

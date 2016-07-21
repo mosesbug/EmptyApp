@@ -5,3 +5,11 @@ Recordings.allow({
   }
 
 });
+
+Meteor.users.allow({
+    'update': function () {
+      /* user and doc checks ,
+      return true to allow insert */
+      return true;
+    }
+  });
