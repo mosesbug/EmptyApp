@@ -39,7 +39,7 @@
 
 		</div>
 		<button class="js-submit btn btn-lg btn-info">Submit</button>
-		<br><br><br>
+		<br><br><br><br><br>
 
 		{{/if}}
 
@@ -64,13 +64,29 @@
 
 				{{/each}}
 
+				<br>
+				<label for="comment">Feedback:</label>
+
 				{{#if checkType}}
 				<div class="form-group">
-					<label for="comment">Feedback:</label>
-					<textarea class="form-control" rows="5" id="comment"></textarea>
+					<!-- <label for="comment">Feedback:</label> -->
+					<textarea class="form-control js-feedbackText" rows="5" id="comment"></textarea>
 				</div>
 
-				<a href="#"><button type="submit" class="btn btn-primary pull-right js-feedback">Submit Feedback</button></a>
+				<button type="submit" class="btn btn-primary pull-right js-feedback">Submit Feedback</button>
+				<br>
 
 				{{/if}}
+
+
+
+					{{#each c in feedback}}
+
+					<p>{{c.comment}}</p>
+
+					{{/each}}
+
+					<br><br><br><br>
+
+
 				</template>
