@@ -1,34 +1,32 @@
 Template.courses.helpers({
 	courses:function(){
-		console.log("worked");
 		return Courses.find();
 	},
 })
 
 Template.showcourse.helpers({
 	course:function(){
-		console.log("in comments");
-		console.log(this);
 		return Courses.find({className: this.className});
 	},
 
 	checkMyCourse: function(){
-		if(Meteor.user()) {
-			console.log("checkMyCourse works");
-			console.log(Meteor.user().profile);
-			console.log(this);
+		var numOfClass = Meteor.user().profile.classes.length;
+		for(i=0; i<numOfClass; i++) {
 
+		if(Meteor.user() && Meteor.user().profile.classes[i]=== this._id ) {
 			return true;
 		}
+
+	}
+
+		return false;
+
 	}
 })
 
 Template.showcourse.events({
 	"click .js-join": function(event){
 		event.preventDefault();
-		console.log(this._id);
-
-
 			var numClasses = Meteor.user().profile.classes.length;
 			for(i = 0; i < numClasses; i++) {
 				if(Meteor.user().profile.classes[i]===this._id) {

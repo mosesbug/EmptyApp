@@ -1,4 +1,5 @@
 <template name="courses">
+
 	<h1>Courses</h1>
 
 
@@ -14,8 +15,6 @@
 	<a href="/showcourse/{{c._id}}">{{c.className}}</a>
 	<br>
 	{{/each}}
-	<br><br><br><br><br>
-
 
 </template>
 
@@ -27,19 +26,23 @@
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
 		<p>{{description}}</p>
-
-
-		{{#if checkMyCourse false}}
-			<h2>checkMyCourse displaying it</h2>
-		{{/if}}
+		<br>
 
 
 
 		{{#if checkType}}
 
-		<p>Teachers may not join courses</p>
+
+		{{#if checkMyCourse}}
 		<br>
+		<p>You are the teacher for this course</p>
 		<button type="button" class="btn btn-primary" id="js-remove">Remove</button>
+		{{else}}
+
+		<p>Teachers may not join courses; Please login in as Student</p>
+
+		{{/if}}
+
 
 
 	{{else}}
