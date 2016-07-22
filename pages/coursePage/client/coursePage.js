@@ -16,22 +16,22 @@ Template.coursePage.helpers({
 		return Assignments.find({"metadata.course": this._id});
 	},
 
-	submitted: function () {
-		var x = 5; //Submissions.find({"ownerId": Meteor.userId(), "assignment": this._id});
-		var y = Submissions.find({"metadata.ownerId": Meteor.userId(), "metadata.assignment": this._id});
+	// submitted: function () {
+	// 	var x = 5; //Submissions.find({"ownerId": Meteor.userId(), "assignment": this._id});
+	// 	var y = Submissions.find({"metadata.ownerId": Meteor.userId(), "metadata.assignment": this._id});
 
-		// Meteor.users.findOne({'_id': Meteor.userId()});
-		console.dir("hey");
-		console.log(y);
+	// 	// Meteor.users.findOne({'_id': Meteor.userId()});
+	// 	console.dir("hey");
+	// 	console.log(y);
 
 
-		if (y) {
-    		return true;
-		} else {
-    		return false;
-		}
+	// 	if (y) {
+ //    		return true;
+	// 	} else {
+ //    		return false;
+	// 	}
 
-	}
+	// }
 })
 
 Template.coursePage.events({

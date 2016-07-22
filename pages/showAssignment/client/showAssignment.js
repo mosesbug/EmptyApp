@@ -49,6 +49,8 @@ Template.showSubmission.events({
 		const comment = $(".js-feedbackText").val();
 		const id = this._id;
 
+		console.log(this._id);
+
 		const feedbackComment = {comment:comment, id:id}
 
 		console.log(feedbackComment);
