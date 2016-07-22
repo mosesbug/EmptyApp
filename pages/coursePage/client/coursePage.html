@@ -14,9 +14,15 @@
 
 
 	<ul>
-		<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
-		
 
+		{{#if submitted}}
+			<p>True Returned</p>
+			<a href="/showSubmission/{{a._id}}"> {{a.metadata.title}}</a>
+		{{else}}
+			<p>False Returned</p>
+			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
+		{{/if}}
+		
 	</ul>
 	{{/each}}
 

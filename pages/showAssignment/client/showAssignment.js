@@ -2,7 +2,26 @@ Template.showAssignment.helpers({
 	
 
 	submissions: function(){
+		console.log("checled");
+		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
+		console.log(Submissions.find().fetch());
 		return Submissions.find({"metadata.assignment": this._id});
+	},
+})
+
+Template.showAssignment.events({
+
+	"click .js-submit": function(event){
+		event.preventDefault();
+		console.log("worked");
+		const id = Meteor.userId()
+		const Assignment = this._id;
+
+		const submission = {Assignment:Assignment, id:id}
+
+		console.log(submission);
+
+		SubmissionsTwo.insert(feedbackComment);
 	}
 })
 
@@ -17,6 +36,7 @@ Template.showSubmission.helpers({
 	
 
 	assignments: function(){
+		console.log("assignments reached");
 		return Assignments.find({"_id": this.metadata.assignment});
 	}
 })
