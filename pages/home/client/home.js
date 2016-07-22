@@ -25,7 +25,8 @@ Template.home.helpers({
   },
 
   myClassesTeacher: function(){
-    return Courses.find({'instructor': Meteor.users.findOne({'_id': Meteor.userId()})});
+    console.log("myclases home dispaly works");
+    return Courses.find({'instructor._id': Meteor.userId()});
   },
 });
 
