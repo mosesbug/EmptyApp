@@ -61,7 +61,7 @@ Template.createClass.events({
 
 
 
-		Meteor.users.update(Meteor.userId(), {$push: {'profile.classes': theCourseObject._id }});
+		Meteor.users.update(Meteor.userId(), {$push: {'profile.classes': theCourseObject}}); //previously theCourseObject._id
 
 		console.log("created a class successfully");
 

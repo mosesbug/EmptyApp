@@ -20,12 +20,13 @@ Template.home.helpers({
     return Courses.find();
   },
 
+
   myClasses: function(){
     return Meteor.user().profile.classes;
   },
 
   myClassesTeacher: function(){
-    console.log("myclases home dispaly works");
+    console.log("myclasses home dispaly works");
     return Courses.find({'instructor._id': Meteor.userId()});
   },
 });
