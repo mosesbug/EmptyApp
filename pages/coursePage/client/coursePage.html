@@ -12,10 +12,10 @@
 	<h1>Assignments</h1>
 	{{#each a in assignments}}
 
-
+	
 	<ul>
 
-		{{#if submitted}}
+		{{#if submitted a}}
 			<p>True Returned</p>
 			<a href="/showSubmission/{{a._id}}"> {{a.metadata.title}}</a>
 		{{else}}
@@ -25,6 +25,7 @@
 		
 	</ul>
 	{{/each}}
+	
 
 
 
