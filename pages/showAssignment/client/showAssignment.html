@@ -26,8 +26,8 @@
 		<h1>submit your response here</h1>
 
 		<div class="col-md-4">
-			<img id="record" src="img/mic128.png">
-			<a id="save" href="#"><img src="img/save.svg"></a>
+			<img id="record" src="/img/mic128.png">
+			<a id="save" href="#"><img src="/img/save.svg"></a>
 
 		</div>
 		<div>
@@ -50,29 +50,28 @@
 
 	</template>
 
-
+	
 	<template name= "showSubmission">
 		{{#each a in assignments}}
+		
 		<h1> {{a.metadata.title}} </h1>
 		{{a.metadata.text}}
 
 		<audio controls>
 			<source src="{{a.url}}" type="audio/wav">
-			</audio>
-			<br>
-			<h2>Here is the student's response</h2>
-			<audio controls>
-				<source src="{{url}}" type="audio/wav">
-				</audio>
+		</audio>
+		<br>
+		<h2>Here is the student's response</h2>
+		<audio controls>
+			<source src="{{url}}" type="audio/wav">
+		</audio>
+		
+		{{/each}}
 
+		<br>
+		<label for="comment">Feedback:</label>
 
-
-				{{/each}}
-
-				<br>
-				<label for="comment">Feedback:</label>
-
-				{{#if checkType}}
+		{{#if checkType}}
 				<div class="form-group">
 					<!-- <label for="comment">Feedback:</label> -->
 					<textarea class="form-control js-feedbackText" rows="5" id="comment"></textarea>
@@ -81,18 +80,24 @@
 				<button type="submit" class="btn btn-primary pull-right js-feedback">Submit Feedback</button>
 				<br>
 
-				{{/if}}
+		{{/if}}
 
 
 
-					{{#each c in feedback}}
+		{{#each c in feedback}}
 					<p>Test</p>
 
 					<p>{{c.comment}}</p>
 
-					{{/each}}
+		{{/each}}
 
 					<br><br><br><br>
 
 
-				</template>
+	</template>
+
+
+
+	<template name="showOneSubmission">
+		
+	</template>

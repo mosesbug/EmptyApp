@@ -16,7 +16,7 @@ Template.showAssignment.helpers({
 
 Template.showAssignment.events({
 
-	"click .js-submit": function(event){
+	"click .js-submit-old": function(event){
 		event.preventDefault();
 		console.log("worked");
 		const id = Meteor.userId()
@@ -42,6 +42,7 @@ Template.showSubmission.helpers({
 
 	assignments: function(){
 		console.log("assignments reached");
+		console.dir(this);
 		return Assignments.find({"_id": this.metadata.assignment});
 	}
 })
