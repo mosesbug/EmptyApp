@@ -58,10 +58,19 @@ Template.showcourse.events({
 		console.log("Clicked the remove button");
 
 		if(Meteor.user() && Meteor.userId() === this.instructor._id ) {
-			Courses.remove({_id: this._id});
-			Router.go("/courses");
+			
+			var r = confirm("You are about to delete this course. Are you sure?");
+			if (r == true) {
+				x = "You pressed OK!";
+				Courses.remove({_id: this._id});
+				Router.go("/courses");
+			} else {
+				x = "You pressed Cancel!";
+			}
+		
 		} else {
 			console.log("you don't have access to delete this class");
+			window.alert("You don't have access to delete this class.");
 		}
 
 
