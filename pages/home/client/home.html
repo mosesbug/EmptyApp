@@ -1,7 +1,8 @@
 
 <template name="home">
+
   {{#if currentUser}}
-  <h1>You're logged in.</h1>
+  <h1>Welcome!</h1>
 
   <h3>My classes</h3>
   {{#if checkType}}
@@ -14,10 +15,10 @@
     {{/each}}
   {{/if}}
   <br><br><br>
-  <h3>List of classes</h3>
+  <!-- <h3>List of classes</h3>
   {{#each class in allClasses}}
     {{>allClassesRow c=class}}
-  {{/each}}
+  {{/each}} -->
 
 
 

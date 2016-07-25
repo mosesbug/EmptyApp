@@ -6,6 +6,13 @@
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
 		<p>{{description}}</p>
+
+		{{#if checkType}}
+			<button class="js-remove pull-right btn btn-sm btn-danger">
+				Delete Course
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+	{{/if}}
 		
 	</div>
 
@@ -20,7 +27,7 @@
 			<a href="/showSubmission/{{a._id}}"> {{a.metadata.title}}</a>
 		{{else}}
 			<p>False Returned</p>
-			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
+			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		{{/if}}
 		
 	</ul>
