@@ -17,8 +17,11 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           {{#if currentUser}}
-
-          <li><a href="/courses">Join Course</a></li>
+		  	{{#if checkType}}
+			   <!-- nothing -->
+			{{else}}
+          		<li><a href="/courses">Join Course</a></li>
+		  	{{/if}}
           <li><a href="/" class="logout">Logout</a></li>
         {{/if}}
 

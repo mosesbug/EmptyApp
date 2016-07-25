@@ -12,7 +12,7 @@
 				Delete Course
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
-	{{/if}}
+	    {{/if}}
 		
 	</div>
 
@@ -23,11 +23,13 @@
 	<ul>
 
 		{{#if submitted a}}
-			<p>True Returned</p>
-			<a href="/showSubmission/{{a._id}}"> {{a.metadata.title}}</a>
+			
+			<a href="/showSubmission/{{lookupMySubmission a._id}}"> {{a.metadata.title}}</a> 
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		{{else}}
-			<p>False Returned</p>
-			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			
+			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a> 
+			({{numSubmitted a._id}} submitted)
 		{{/if}}
 		
 	</ul>
