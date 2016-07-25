@@ -22,8 +22,31 @@
   							<label for="comment">Text:</label>
   							<textarea class="js-text form-control" rows="5" id="availability"></textarea>
 						</div>
+						<button class="js-questions">Add a question</button>
+  						
+						{{#if greater theQuestions 0}}
 					<div class="col-md-4">
-      						<img id="record" src="img/mic128.png">
+      						<h2> Question 1 </h2>
+      						<img id="record1" src="/img/mic128.png">
+      						<a id="save" href="#"><img src="/img/save.svg"></a>
+  						</div>
+  				    <div>
+
+		  			<canvas id="analyser" width="1024" height="250"></canvas>
+
+ 		 			</div>
+
+  					<div >
+
+     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+     			 <button class="js-question1 btn btn-lg btn-info">Enter</button>
+
+					</div>
+					{{/if}}
+					{{#if greater theQuestions 1}}
+					<div class="col-md-4">
+      						<h2> Question 2 </h2>
+      						<img id="record2" src="img/mic128.png">
       						<a id="save" href="#"><img src="img/save.svg"></a>
   						</div>
   				    <div>
@@ -36,8 +59,69 @@
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
 
+     			 <button class="js-question2 btn btn-lg btn-info">Enter</button>
+					</div>
+					{{/if}}
+
+					{{#if greater theQuestions 2}}
+					<div class="col-md-4">
+      						<h2> Question 3 </h2>
+      						<img id="record3" src="/img/mic128.png">
+      						<a id="save" href="#"><img src="/img/save.svg"></a>
+  						</div>
+  				    <div>
+
+		  			<canvas id="analyser" width="1024" height="250"></canvas>
+
+ 		 			</div>
+
+  					<div >
+
+     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+				<button class="js-question3 btn btn-lg btn-info">Enter</button>
 
 					</div>
+					{{/if}}
+
+					{{#if greater theQuestions 3}}
+					<div class="col-md-4">
+      						<h2> Question 4 </h2>
+      						<img id="record4" src="img/mic128.png">
+      						<a id="save" href="#"><img src="img/save.svg"></a>
+  						</div>
+  				    <div>
+
+		  			<canvas id="analyser" width="1024" height="250"></canvas>
+
+ 		 			</div>
+
+  					<div >
+
+     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+     			 <button class="js-question4 btn btn-lg btn-info">Enter</button>
+
+					</div>
+					{{/if}}
+
+					{{#if greater theQuestions 4}}
+					<div class="col-md-4">
+      						<h2> Question 5 </h2>
+      						<img id="record5" src="img/mic128.png">
+      						<a id="save" href="#"><img src="img/save.svg"></a>
+  						</div>
+  				    <div>
+
+		  			<canvas id="analyser" width="1024" height="250"></canvas>
+
+ 		 			</div>
+
+  					<div >
+
+     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+     			 <button class="js-question5 btn btn-lg btn-info">Enter</button>
+
+					</div>
+					{{/if}}
 					<button class="js-submit btn btn-lg btn-info">Submit</button>
 
 					</form>

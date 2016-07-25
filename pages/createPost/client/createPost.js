@@ -1,4 +1,9 @@
 var File;
+var Q1;
+var Q2;
+var Q3;
+var Q4;
+var Q5;
 
 Template.createPost.helpers({
   recording: function(){
@@ -90,9 +95,57 @@ Template.createAssignment.onRendered(function(){
 })
 
 Template.createAssignment.events({
-  "click #record": function(event){
-    toggleRecording(document.getElementById("record"));
+  "click #record1": function(event){
+    toggleRecording(document.getElementById("record1"));
+    
   },
+  "click #record2": function(event){
+    toggleRecording(document.getElementById("record2"));
+    
+  },
+  "click #record3": function(event){
+    toggleRecording(document.getElementById("record3"));
+    
+  },
+  "click #record4": function(event){
+    toggleRecording(document.getElementById("record4"));
+    
+  },
+  "click #record5": function(event){
+    toggleRecording(document.getElementById("record5"));
+    
+  },
+  "click .js-question1": function(event){
+    event.preventDefault();
+    const title= $(".js-title").val();
+    const text= $(".js-text").val(); 
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      question:1,
+      assignment
+    }
+
+    Recordings.insert(File);
+    
+  },
+  "click .js-question2": function(event){
+    toggleRecording(document.getElementById("record2"));
+    
+  },
+  "click .js-question3": function(event){
+    toggleRecording(document.getElementById("record3"));
+    
+  },
+  "click .js-question4": function(event){
+    toggleRecording(document.getElementById("record4"));
+    
+  },
+  "click .js-question5": function(event){
+    toggleRecording(document.getElementById("record5"));
+    
+  },
+
+
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $(".js-title").val();
@@ -100,7 +153,7 @@ Template.createAssignment.events({
     console.dir(this._id);
     File.metadata= {
       ownerId:Meteor.userId(),
-      title:title,
+      questionNumber:1,
       text:text,
       course:this._id
     }
