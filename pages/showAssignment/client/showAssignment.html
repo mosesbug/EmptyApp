@@ -7,7 +7,7 @@
 	{{#if checkType}}
 	{{#each s in submissions}}
 	<ul>
-		<a href="/showSubmission/{{s._id}}"> {{s.metadata.ownerId}}</a>	
+		<a href="/showSubmission/{{s._id}}"> {{findUser s.metadata.ownerId}}'s Submision</a>	
 	</ul>
 	{{/each}}
 
@@ -92,7 +92,7 @@
 
 					{{/each}}
 
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					<br><br><br><br>
 
 
 				</template>

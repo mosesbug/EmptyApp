@@ -2,11 +2,16 @@ Template.showAssignment.helpers({
 	
 
 	submissions: function(){
-		console.log("checled");
+		console.log("checked");
 		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
 		console.log(Submissions.find().fetch());
 		return Submissions.find({"metadata.assignment": this._id});
 	},
+
+	findUser: function(id){
+		var user = Meteor.users.findOne({'_id': id});
+		return user.profile.firstName+" "+user.profile.lastName;
+	}
 })
 
 Template.showAssignment.events({
