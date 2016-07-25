@@ -18,12 +18,14 @@ Template.home.helpers({
     return Courses.find();
   },
 
+
   myClasses: function(){
     return Meteor.user().profile.classes;
   },
 
   myClassesTeacher: function(){
-    return Courses.find({'instructor': Meteor.users.findOne({'_id': Meteor.userId()})});
+    console.log("myclasses home dispaly works");
+    return Courses.find({'instructor._id': Meteor.userId()});
   },
 });
 

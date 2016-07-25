@@ -6,18 +6,33 @@
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
 		<p>{{description}}</p>
+
+		{{#if checkType}}
+			<button class="js-remove pull-right btn btn-sm btn-danger">
+				Delete Course
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+	{{/if}}
 		
 	</div>
 
 	<h1>Assignments</h1>
 	{{#each a in assignments}}
 
-	<ul>
-		<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
-		
 
+	<ul>
+
+		{{#if submitted}}
+			<p>True Returned</p>
+			<a href="/showSubmission/{{a._id}}"> {{a.metadata.title}}</a>
+		{{else}}
+			<p>False Returned</p>
+			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		{{/if}}
+		
 	</ul>
 	{{/each}}
+
 
 
 	{{#if checkType}}
@@ -25,19 +40,9 @@
 		Create Assignment
 	</button>
 	{{/if}}
-
+<br><br><br><br><br><br>
 </template>
 
-<template name="showAssignment">
-	<h1> {{metadata.title}}</h1>
-	{{metadata.text}}<br>
-	<audio controls>
 
 
-
-		<source src="{{url}}" type="audio/wav">
-
-		</audio>
-
-	</template>
 

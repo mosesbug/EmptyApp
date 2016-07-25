@@ -1,4 +1,18 @@
+
+Template.createClass.helpers({
+	languages:function(){
+		return Languages.find({},{sort:{name:1}});
+	},
+
+	schools:function(){
+		return Schools.find({},{sort:{name:1}});
+	}
+})
+
+
 Template.createClass.events({
+
+
 	 "click .js-create": function(event){
 	 	event.preventDefault();
 	 	console.log("worked");
@@ -8,6 +22,7 @@ Template.createClass.events({
 		const description = $(".js-description").val();
 
 		const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
+		//const instructor = Meteor.userId();
 		const instructorFirst = instructor.profile.firstName;
 		const instructorLast = instructor.profile.lastName;
 
@@ -46,7 +61,7 @@ Template.createClass.events({
 
 
 
-		Meteor.users.update(Meteor.userId(), {$push: {'profile.classes': theCourseObject._id }});
+		Meteor.users.update(Meteor.userId(), {$push: {'profile.classes': theCourseObject}}); //previously theCourseObject._id
 
 		console.log("created a class successfully");
 
