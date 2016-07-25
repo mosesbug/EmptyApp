@@ -1,6 +1,7 @@
 Meteor.startup(function(){
 	//Recordings.remove({});
-
+	//Courses.remove({});
+	
 	if (Languages.find().count() == 0) {
 		Languages.insert({name: "English"});
 		Languages.insert({name: "German"});
