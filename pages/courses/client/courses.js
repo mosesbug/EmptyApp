@@ -21,7 +21,21 @@ Template.showcourse.helpers({
 
 		return false;
 
+	},
+
+	checkStudentCourse: function(){
+		var numOfClass = Meteor.user().profile.classes.length;
+		for(i=0; i<numOfClass; i++) {
+
+		if(Meteor.user() && Meteor.user().profile.classes[i]._id=== this._id ) {
+			return true;
+		}
+
 	}
+
+		return false;
+
+	},
 })
 
 Template.showcourse.events({
