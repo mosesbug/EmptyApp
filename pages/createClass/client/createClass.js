@@ -21,8 +21,8 @@ Template.createClass.events({
 		const language = $(".js-language").val();
 		const description = $(".js-description").val();
 
-		//const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
-		const instructor = Meteor.userId();
+		const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
+		//const instructor = Meteor.userId();
 		const instructorFirst = instructor.profile.firstName;
 		const instructorLast = instructor.profile.lastName;
 
