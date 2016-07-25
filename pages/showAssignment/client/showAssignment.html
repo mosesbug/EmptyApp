@@ -5,6 +5,7 @@
 
 
 	{{#if checkType}}
+	<h1>{{numSubmissions _id}} Submissions</h1>
 	{{#each s in submissions}}
 	<ul>
 		<a href="/showSubmission/{{s._id}}"> {{findUser s.metadata.ownerId}}'s Submision</a>	

@@ -7,6 +7,13 @@ Template.showAssignment.helpers({
 		console.log(Submissions.find().fetch());
 		return Submissions.find({"metadata.assignment": this._id});
 	},
+	
+	numSubmissions: function(){
+		console.log("checked");
+		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
+		console.log(Submissions.find().fetch());
+		return Submissions.find({"metadata.assignment": this._id}).count();
+	},
 
 	findUser: function(id){
 		var user = Meteor.users.findOne({'_id': id});

@@ -12,6 +12,11 @@ Template.coursePage.helpers({
 		//return Courses.find({className: this.className});
 	//},
 		
+		numSubmitted: function(aId){
+			const numSubmitted = Submissions.find({"metadata.assignment":aId}).count();
+			return numSubmitted;
+		},
+		
 		lookupMySubmission: function(aId){
 			const metadata = {"metadata.assignment":aId,"metadata.ownerId":Meteor.userId()};
 			console.dir(metadata);

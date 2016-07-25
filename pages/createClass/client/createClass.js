@@ -41,7 +41,7 @@ Template.createClass.events({
 
 			Courses.insert(course);
 
-			Router.go( "/");
+			//Router.go( "/");
 
 
 			var theCourseObject = Courses.findOne({className: className,
@@ -69,13 +69,14 @@ Template.createClass.events({
 
 
 
-		Router.go("/coursePage/"+this._id);
+		//Router.go("/coursePage/"+this._id);
 
 
 
 
 
-			Router.go( "/courses");
+			//Router.go( "/courses");
+			Router.go("/");
 
 		}
 	},
