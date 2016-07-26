@@ -53,16 +53,18 @@
 
 	
 	<template name= "showSubmission">
+
 		{{#each a in assignments}}
 		
 		<h1> {{a.metadata.title}} </h1>
-		{{a.metadata.text}}
+		<p>Assignment Description/instructions: {{a.metadata.text}}</p>
+		<br>
 
 		<audio controls>
 			<source src="{{a.url}}" type="audio/wav">
 		</audio>
 		<br>
-		<h2>Here is the student's response</h2>
+		<h2>Student Response:</h2>
 		<audio controls>
 			<source src="{{url}}" type="audio/wav">
 		</audio>
