@@ -64,6 +64,21 @@ Template.coursePage.events({
 			var r = confirm("You are about to delete this course. Are you sure?");
 			if (r == true) {
 				x = "You pressed OK!";
+				var a = Meteor.users.find().fetch();
+
+				for (var i = a.length - 1; i >= 0; i--) {
+				 	var array = a[i].profile.classes;
+				 	var index = array.indexOf(this);
+				 	var array1 = array.slice(0, index);
+				 	if (index > array.length -1) {
+				 		var array2 = array.slice(index + 1)
+					} else {
+						var array2 = [];
+					}
+					array = array1.concat(array2);
+				 	Meteor.users.update(a[i]._id, {$set: {"profile.classes": array}});
+					console.log(a[i].profile.classes)
+				}
 				Courses.remove({_id: this._id});
 				Router.go("/courses");
 			} else {
