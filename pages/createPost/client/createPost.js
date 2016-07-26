@@ -196,11 +196,12 @@ Template.showAssignment.events({
     }
 
 
-    const submissionId = Submissions.insert(File);
-	console.log("the submission insert returns this id ");
-	console.dir(submissionId);
+     const submissionId = Submissions.insert(File);
+  console.log("the submission insert returns this id ");
+  console.dir(submissionId);
     //console.dir(blob);
     Router.go('showSubmission',{"_id":submissionId._id});
+  }
   }
 
 })
