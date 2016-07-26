@@ -40,6 +40,7 @@ Template.showAssignment.events({
 
 Template.showSubmission.helpers({
 
+
 	feedback: function(){
 
 		console.log(this.metadata.assignment);
