@@ -5,7 +5,7 @@
 	<a href ="/flashcards/{{_id}}"><button type="button" class="pull-left btn btn-success btn-sm">
   <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Flashcards
 </button></a>
-		
+
 		<br>
 		<h1>{{className}}</h1>
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
@@ -18,34 +18,34 @@
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
 	    {{/if}}
-		
+
 	</div>
 
 	<h1>Assignments</h1>
 	{{#each a in assignments}}
 
-	
+
 	<ul>
 
 		{{#if submitted a}}
-			
-			<a href="/showSubmission/{{lookupMySubmission a._id}}"> {{a.metadata.title}}</a> 
+
+			<a href="/showSubmission/{{lookupMySubmission a._id}}"> {{a.metadata.title}}</a>
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		{{else}}
-			
+
 			{{#if checkType}}
-			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a> 
+			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a>
 			({{numSubmitted a._id}} submitted)
 			{{else}}
-			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a> 
+			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a>
 			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			{{/if}}
 
 		{{/if}}
-		
+
 	</ul>
 	{{/each}}
-	
+
 
 
 
@@ -56,7 +56,3 @@
 	{{/if}}
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </template>
-
-
-
-
