@@ -18,6 +18,14 @@ Template.home.helpers({
     return Courses.find();
   },
 
+//HERE
+  name: function(){
+    console.log("Hello");
+    const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
+    const instructorFirst = instructor.profile.firstName;
+    return instructorFirst;
+  },
+
 
   myClasses: function(){
     return Meteor.user().profile.classes;
