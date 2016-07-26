@@ -45,7 +45,19 @@
 
 {{#if currentUser}}
   <div class="navbar navbar-inverse navbar-fixed-bottom">
-    <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a></p>
+    <style type="text/css">
+        h4{color:green;}
+    </style>
+
+    <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a>
+
+      <h4>  Speech recognition Demo </h4>
+      <input id="speech" type="text">
+      <button id="rec" class="btn">Speak</button>
+
+    </p>
+
+
   </div>
   {{else}}
 
@@ -57,27 +69,3 @@
 
 
 </template>
-
-
-
-<!--  <div class="container">
-    <ul class="nav nav-pills">
-        <li role="presentation">
-          <a href="{{pathFor 'home'}}">Home</a>
-        </li>
-        <li role="presentation">
-          <a href="/about">About</a>
-        </li>
-       <li role="presentation">
-        <a href="/comments">Comments</a>
-       </li>
-       <li role="presentation">
-        <a href="/items">Items</a>
-       </li>
-       <li>
-        {{> loginButtons}}
-       </li>
-    </ul>
-  {{> yield}}
-
-</div> -->
