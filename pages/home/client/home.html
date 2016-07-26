@@ -9,6 +9,9 @@
     {{#each course in myClassesTeacher}}
       {{>myClassesTeacherRow courses=course}}
     {{/each}}
+	<a href="/createClass">
+		<button type="submit" class="btn btn-primary js-create">Create New Course</button>
+	</a>
   {{else}}
     {{#each class in myClasses}}
      {{>myClassesRow c=class}}

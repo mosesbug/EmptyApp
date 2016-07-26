@@ -11,27 +11,41 @@ Template.coursePage.helpers({
 		//console.log(this);
 		//return Courses.find({className: this.className});
 	//},
+		
+		numSubmitted: function(aId){
+			const numSubmitted = Submissions.find({"metadata.assignment":aId}).count();
+			return numSubmitted;
+		},
+		
+		lookupMySubmission: function(aId){
+			const metadata = {"metadata.assignment":aId,"metadata.ownerId":Meteor.userId()};
+			console.dir(metadata);
+			const mySubmission = Submissions.findOne(metadata);
+			console.dir(mySubmission); console.log("is my submission");
+			return mySubmission._id;
+		},
 
 	assignments: function(){
 		return Assignments.find({"metadata.course": this._id});
 	},
 
-	// submitted: function () {
+	submitted: function (assignment) {
 	// 	var x = 5; //Submissions.find({"ownerId": Meteor.userId(), "assignment": this._id});
-	// 	var y = Submissions.find({"metadata.ownerId": Meteor.userId(), "metadata.assignment": this._id});
-
+	    console.log("submitted fn with assignment = "); console.dir( assignment);
+	 	var y= Submissions.findOne({"metadata.ownerId": Meteor.userId(), "metadata.assignment": assignment._id });
+		console.dir(y);
 	// 	// Meteor.users.findOne({'_id': Meteor.userId()});
 	// 	console.dir("hey");
-	// 	console.log(y);
+		//console.log(y);
 
 
-	// 	if (y) {
- //    		return true;
-	// 	} else {
- //    		return false;
-	// 	}
+	 	if (y!=null) {
+    		return true;
+	 	} else {
+   		return false;
+	 	}
 
-	// }
+	 }
 })
 
 Template.coursePage.events({

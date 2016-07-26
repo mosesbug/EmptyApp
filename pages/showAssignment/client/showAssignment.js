@@ -2,16 +2,28 @@ Template.showAssignment.helpers({
 	
 
 	submissions: function(){
-		console.log("checled");
+		console.log("checked");
 		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
 		console.log(Submissions.find().fetch());
 		return Submissions.find({"metadata.assignment": this._id});
 	},
+	
+	numSubmissions: function(){
+		console.log("checked");
+		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
+		console.log(Submissions.find().fetch());
+		return Submissions.find({"metadata.assignment": this._id}).count();
+	},
+
+	findUser: function(id){
+		var user = Meteor.users.findOne({'_id': id});
+		return user.profile.firstName+" "+user.profile.lastName;
+	}
 })
 
 Template.showAssignment.events({
 
-	"click .js-submit": function(event){
+	"click .js-submit-old": function(event){
 		event.preventDefault();
 		console.log("worked");
 		const id = Meteor.userId()
@@ -37,6 +49,7 @@ Template.showSubmission.helpers({
 
 	assignments: function(){
 		console.log("assignments reached");
+		console.dir(this);
 		return Assignments.find({"_id": this.metadata.assignment});
 	}
 })

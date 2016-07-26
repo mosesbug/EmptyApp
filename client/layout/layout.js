@@ -4,3 +4,4 @@ Template.layout.events({
 				Meteor.logout();
     }
 });
+
