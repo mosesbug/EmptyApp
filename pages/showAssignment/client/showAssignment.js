@@ -18,6 +18,12 @@ Template.showAssignment.helpers({
 	findUser: function(id){
 		var user = Meteor.users.findOne({'_id': id});
 		return user.profile.firstName+" "+user.profile.lastName;
+	},
+
+	questions: function(){
+		const x=Questions.find();
+		console.dir(x);
+		return Questions.find({"metadata.assignment": this._id})
 	}
 })
 
@@ -39,6 +45,7 @@ Template.showAssignment.events({
 
 
 Template.showSubmission.helpers({
+
 
 	feedback: function(){
 

@@ -1,31 +1,48 @@
-Template.createAssignment.onCreated(function() {
+Template.makeQuestions.onCreated(function() {
   this.state = new ReactiveDict();
   this.state.setDefault({
-    questions: 0,
+    questions: 1,
+    showQuestion: false,
   });
 });
 
-  Template.createAssignment.events({
-	"click .js-questions": function(event, instance){
+  Template.makeQuestions.events({
+	"click .js-add-question": function(event, instance){
 		event.preventDefault();
-		const c = instance.state.get("questions");
+		const c = instance.state.get("showQuestion");
 		console.dir(c);
-		instance.state.set("questions", 1+c);
+		instance.state.set("showQuestion", true);
+		const b= instance.state.get("questions");
+		instance.state.set("questions", 1+b);
+
 	},
 
 });
 
 
-  Template.createAssignment.helpers({
-	theQuestions: function(){
+  Template.makeQuestions.helpers({
+	questionNumber: function(){
 		const instance= Template.instance();
 		return instance.state.get("questions")
 		
 	},
-
+	showQuestion: function(){
+		const instance= Template.instance();
+		return instance.state.get("showQuestion")
+	},
 
 	greater: function(a,b){
 		return (a>b);
+	},
+
+	assignment: function(){
+		return Assignments.findOne({}, {sort:{$natural:-1}});
+	},
+
+	questions: function(){
+		return Questions.find({"metadata.assignment": this._id})
 	}
+
+
 
 });

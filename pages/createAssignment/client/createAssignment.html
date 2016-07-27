@@ -13,6 +13,7 @@
 	<div class="col-lg-12 well">
 	<div class="row">
 				<form>
+
 					<div class="form-group">
 								<label>Title</label>
 								<input type="text" placeholder="Enter Title" class="js-title form-control">
@@ -22,77 +23,13 @@
   							<label for="comment">Text:</label>
   							<textarea class="js-text form-control" rows="5" id="availability"></textarea>
 						</div>
-						<button class="js-questions">Add a question</button>
-  						
-						{{#if greater theQuestions 0}}
-					<div class="col-md-4">
+						
 
-      						<h2> Question 1 </h2>
-      						<img id="record1" src="/img/mic128.png">
-      						<a id="save" href="#"><img src="/img/save.svg"></a>
-  						</div>
-  				    <div>
+						<div class="col-md-4">
 
-		  			<canvas id="analyser" width="1024" height="250"></canvas>
-
- 		 			</div>
-
-  					<div >
-
-     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-     			 <button class="js-question1 btn btn-lg btn-info">Enter</button>
-
-					</div>
-					{{/if}}
-					{{#if greater theQuestions 1}}
-					<div class="col-md-4">
-      						<h2> Question 2 </h2>
-      						<img id="record2" src="/img/mic128.png">
-      						<a id="save" href="#"><img src="/img/save.svg"></a>
-  						</div>
-  				    <div>
-
-		  			<canvas id="analyser" width="1024" height="250"></canvas>
-
- 		 			</div>
-
-  					<div >
-
-     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-
-     			 <button class="js-question2 btn btn-lg btn-info">Enter</button>
-					</div>
-					{{/if}}
-
-					{{#if greater theQuestions 2}}
-					<div class="col-md-4">
-      						<h2> Question 3 </h2>
-      						<img id="record3" src="/img/mic128.png">
-      						<a id="save" href="#"><img src="/img/save.svg"></a>
-  						</div>
-  				    <div>
-
-		  			<canvas id="analyser" width="1024" height="250"></canvas>
-
- 		 			</div>
-
-  					<div >
-
-     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-				<button class="js-question3 btn btn-lg btn-info">Enter</button>
-
-					</div>
-					{{/if}}
-
-					{{#if greater theQuestions 3}}
-					<div class="col-md-4">
-      						<h2> Question 4 </h2>
-      						<img id="record4" src="/img/mic128.png">
-      						<a id="save" href="#"><img src="/img/save.svg"></a>
-
+      						
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
-
   						</div>
   				    <div>
 
@@ -103,34 +40,72 @@
   					<div >
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-     			 <button class="js-question4 btn btn-lg btn-info">Enter</button>
+     			 <button class="js-submit btn btn-lg btn-info">submit</button>
 
 					</div>
-					{{/if}}
+					
 
-					{{#if greater theQuestions 4}}
-					<div class="col-md-4">
-      						<h2> Question 5 </h2>
-      						<img id="record5" src="/img/mic128.png">
-      						<a id="save" href="#"><img src="/img/save.svg"></a>
-  						</div>
-  				    <div>
 
-		  			<canvas id="analyser" width="1024" height="250"></canvas>
-
- 		 			</div>
-
-  					<div >
-
-     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-     			 <button class="js-question5 btn btn-lg btn-info">Enter</button>
-
-					</div>
-					{{/if}}
-					<button class="js-submit btn btn-lg btn-info">Submit</button>
+						
+  						
+						
+					
+					
 
 					</form>
 				</div>
 			</div>
 		</div>
+		<br><br><br><br><br>
 </template>
+
+<template name="makeQuestions">
+
+		<h1>{{metadata.title}}</h1>
+		<h4>{{metadata.text}}</h4>
+		<audio controls>
+
+
+
+		<source src="{{url}}" type="audio/wav">
+
+		</audio>
+		{{#each q in questions}}
+		<h2>Question {{q.metadata.question}}</h2>
+			<audio controls>
+
+
+
+		<source src="{{q.url}}" type="audio/wav">
+
+		</audio>
+
+		{{/each}}
+		<br>
+		<button class="js-add-question">Add a question</button>
+			
+		{{#if showQuestion}}
+
+			<div class="col-md-4">
+
+
+      						<h2> Question 1 </h2>
+      						<img id="record" src="/img/mic128.png">
+      						<a id="save" href="#"><img src="/img/save.svg"></a>
+  						</div>
+  				    <div>
+
+		  			<canvas id="analyser" width="1024" height="250"></canvas>
+
+ 		 			</div>
+
+  					<div >
+
+     			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+     			 <button class="js-enter btn btn-lg btn-info">Enter</button>
+
+					</div>
+
+			{{/if}}
+					<br><br><br><br>
+	</template>

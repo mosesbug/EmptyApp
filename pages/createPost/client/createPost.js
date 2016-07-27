@@ -1,9 +1,5 @@
 var File;
-var Q1;
-var Q2;
-var Q3;
-var Q4;
-var Q5;
+
 
 Template.createPost.helpers({
   recording: function(){
@@ -95,53 +91,22 @@ Template.createAssignment.onRendered(function(){
 })
 
 Template.createAssignment.events({
-  "click #record1": function(event){
-    toggleRecording(document.getElementById("record1"));
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
     
   },
-  "click #record2": function(event){
-    toggleRecording(document.getElementById("record2"));
     
-  },
-  "click #record3": function(event){
-    toggleRecording(document.getElementById("record3"));
-    
-  },
-  "click #record4": function(event){
-    toggleRecording(document.getElementById("record4"));
-    
-  },
-  "click #record5": function(event){
-    toggleRecording(document.getElementById("record5"));
-    
-  },
-  "click .js-question1": function(event){
+  "click .js-question": function(event){
     event.preventDefault();
-    const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
+    //const title= $(".js-title").val();
+    //const text= $(".js-text").val(); 
     File.metadata= {
       ownerId:Meteor.userId(),
       question:1,
-      assignment
+      assignment:this._id 
     }
 
     Recordings.insert(File);
-    
-  },
-  "click .js-question2": function(event){
-    toggleRecording(document.getElementById("record2"));
-    
-  },
-  "click .js-question3": function(event){
-    toggleRecording(document.getElementById("record3"));
-    
-  },
-  "click .js-question4": function(event){
-    toggleRecording(document.getElementById("record4"));
-    
-  },
-  "click .js-question5": function(event){
-    toggleRecording(document.getElementById("record5"));
     
   },
 
@@ -153,14 +118,21 @@ Template.createAssignment.events({
     console.dir(this._id);
     File.metadata= {
       ownerId:Meteor.userId(),
-      questionNumber:1,
+      title:title,
       text:text,
-      course:this._id
+      course:this._id,
+      posted: false
     }
 
-    Assignments.insert(File);
+   const assignmentId= Assignments.insert(File);
+    Router.go('makeQuestions',{"_id":assignmentId._id});
     //console.dir(blob);
-    Router.go('/coursePage/'+this._id);
+    
+
+    const instance= Template.instance();
+    const c = instance.state.get("newAssignment");
+    console.dir(c);
+    instance.state.set("newAssignment", false);
   }
 })
 
@@ -202,7 +174,57 @@ Template.showAssignment.events({
     //console.dir(blob);
     Router.go('showSubmission',{"_id":submissionId._id});
   }
+  
+
+})
+
+
+
+Template.makeQuestions.helpers({
+  recording: function(){
+    const status = Recording.findOne();
+    console.log("status='"+status.recording+"'"); console.dir(status);
+    if (status.recording == true){
+      toggleRecording(recordButton);
+    }
+    return status;
   }
+})
+
+//let recordButton=null;
+
+Template.makeQuestions.onRendered(function(){
+  initAudio();
+  recordButton = document.getElementById("record")
+})
+
+Template.makeQuestions.events({
+  "click #record": function(event){
+    toggleRecording(document.getElementById("record"));
+  },
+  "click .js-enter": function(event){
+    event.preventDefault();
+    const instance= Template.instance();
+    const questions= instance.state.get("questions");
+
+    //const title= $("").val();
+    //const text= $(".js-text").val(); 
+    File.metadata= {
+      ownerId:Meteor.userId(),
+      assignment:this._id,
+      question:questions
+    }
+
+
+   Questions.insert(File);
+  //console.log("the submission insert returns this id ");
+  //console.dir(submissionId);
+    //console.dir(blob);
+    const c = instance.state.get("showQuestion");
+    console.dir(c);
+    instance.state.set("showQuestion", false);;
+  }
+  
 
 })
 

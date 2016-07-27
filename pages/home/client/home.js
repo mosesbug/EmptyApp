@@ -4,8 +4,6 @@ Template.login.events({
     event.preventDefault();
     var emailVar = $('[name=username]').val();
     var passwordVar = $('[name=password]').val();
-    console.dir(emailVar);
-    console.dir(passwordVar);
     Meteor.loginWithPassword(emailVar, passwordVar, function(error){
       if(error) {
         console.log("login failed. Try again or create an account");
@@ -18,6 +16,14 @@ Template.login.events({
 Template.home.helpers({
   allClasses: function(){
     return Courses.find();
+  },
+
+//HERE
+  name: function(){
+    console.log("Hello");
+    const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
+    const instructorFirst = instructor.profile.firstName;
+    return instructorFirst;
   },
 
 

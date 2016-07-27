@@ -26,6 +26,15 @@
 
 		<h1>submit your response here</h1>
 
+		{{#each q in questions}}
+		<h2> Question {{q.metadata.question}}</h2>
+		<audio controls>
+
+		<source src="{{q.url}}" type="audio/wav">
+
+		</audio>
+		<br>
+
 		<div class="col-md-4">
 			<img id="record" src="/img/mic128.png">
 			<a id="save" href="#"><img src="/img/save.svg"></a>
@@ -44,6 +53,7 @@
 
 		</div>
 		<button class="js-submit btn btn-lg btn-info">Submit</button>
+		{{/each}}
 		<br><br><br><br><br>
 
 		{{/if}}
@@ -53,16 +63,18 @@
 
 	
 	<template name= "showSubmission">
+
 		{{#each a in assignments}}
 		
 		<h1> {{a.metadata.title}} </h1>
-		{{a.metadata.text}}
+		<p>Assignment Description/instructions: {{a.metadata.text}}</p>
+		<br>
 
 		<audio controls>
 			<source src="{{a.url}}" type="audio/wav">
 		</audio>
 		<br>
-		<h2>Here is the student's response</h2>
+		<h2>Student Response:</h2>
 		<audio controls>
 			<source src="{{url}}" type="audio/wav">
 		</audio>
@@ -86,7 +98,6 @@
 
 
 		{{#each c in feedback}}
-					<p>Test</p>
 
 					<p>{{c.comment}}</p>
 
