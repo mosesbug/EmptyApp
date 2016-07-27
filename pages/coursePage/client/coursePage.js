@@ -68,14 +68,21 @@ Template.coursePage.events({
 
 				for (var i = a.length - 1; i >= 0; i--) {
 				 	var array = a[i].profile.classes;
-				 	var index = array.indexOf(this);
-				 	var array1 = array.slice(0, index);
-				 	if (index > array.length -1) {
-				 		var array2 = array.slice(index + 1)
+				 	var array2 = [];
+				 	array2.length = array.length;
+				 	for (var j = array2.length - 1; j >= 0; j--) {
+				 		array2[j]=array[j]._id;
+				 	}
+				 	var index = array2.indexOf(this._id);
+				 	console.log(index);
+				 	/*var array1 = array.slice(0, index);
+				 	if (index < array.length -1) {
+				 		var array2 = array.slice(index + 1, array.length)
 					} else {
 						var array2 = [];
 					}
-					array = array1.concat(array2);
+					array = array1.concat(array2);*/
+					array.splice(index, 1)
 				 	Meteor.users.update(a[i]._id, {$set: {"profile.classes": array}});
 					console.log(a[i].profile.classes)
 				}
