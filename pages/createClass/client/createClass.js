@@ -20,17 +20,18 @@ Template.createClass.events({
 		const collegeUniversity = $(".js-collegeUniversity").val();
 		const language = $(".js-language").val();
 		const description = $(".js-description").val();
+		const courseCode = $(".js-courseCode").val();
 
 		const instructor = Meteor.users.findOne({'_id': Meteor.userId()});
 		//const instructor = Meteor.userId();
 		const instructorFirst = instructor.profile.firstName;
 		const instructorLast = instructor.profile.lastName;
 
-		if (className == "" || collegeUniversity == "" || language == "" || description == "") {
+		if (className == "" || collegeUniversity == "" || language == "" || description == "" || courseCode == "") {
 			window.alert("Uh oh, one or more fields are empty!")
 		} else {
 
-			const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor};
+			const course = {className:className, collegeUniversity:collegeUniversity, language:language, description:description, instructorFirst:instructorFirst, instructorLast:instructorLast, instructor:instructor, courseCode:courseCode};
 
 			console.dir(course);
 
