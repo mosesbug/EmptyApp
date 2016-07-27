@@ -87,7 +87,7 @@ Template.coursePage.events({
 					console.log(a[i].profile.classes)
 				}
 				Courses.remove({_id: this._id});
-				Router.go("/courses");
+				Router.go("/");
 			} else {
 				x = "You pressed Cancel!";
 			}
