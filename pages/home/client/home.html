@@ -2,22 +2,45 @@
 <template name="home">
 
   {{#if currentUser}}
-  <h1>Welcome back, {{name}}!</h1>
+
+  <h1><strong>Welcome back, {{name}}!</strong></h1>
+  <hr>
+
 {{#if checkType}}
     <a href="/createClass">
     <button type="submit" class="btn btn-info js-create pull-right">Create New Course</button>
   </a>
   {{/if}}
 
-  <h3>My classes</h3>
+  <h2><strong>My classes</strong></h2>
   {{#if checkType}}
+  <div class= "col-md-4">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr><th>Class</th></tr>
+    </thead>
+    <tbody>
     {{#each course in myClassesTeacher}}
       {{>myClassesTeacherRow courses=course}}
     {{/each}}
+
+    </tbody>
+  </table>
+  </div>
+
   {{else}}
+  <div class="col-md-6">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr><th>Class</th><th>Instructor</th></tr>
+    </thead>
+    <tbody>
     {{#each class in myClasses}}
      {{>myClassesRow c=class}}
     {{/each}}
+    </tbody>
+  </table>
+  </div>
   {{/if}}
   <br><br><br>
   <!-- <h3>List of classes</h3>
@@ -36,18 +59,24 @@
 </template>
 
 <template name="myClassesRow">
-    <p><a href="/coursePage/{{c._id}}">{{c.className}}</a></p>
+  <tr>
+    <td><a href="/coursePage/{{c._id}}">{{c.className}}</a></td>
+    <td>{{c.instructorFirst}} {{c.instructorLast}}</td>
+  </tr>
 </template>
 
 <template name="myClassesTeacherRow">
-    <p><a href="/coursePage/{{courses._id}}">{{courses.className}}</a></p>
+  <tr>  
+    <td><a href="/coursePage/{{courses._id}}">{{courses.className}}</a></td>
+  </tr>
+
 </template>
 
-<template name="allClassesRow">
+<!-- <template name="allClassesRow">
   <ul>
     <li><a href="/coursePage/{{c._id}}">{{c.className}}</a></li>
   </ul>
-</template>
+</template> -->
 
 <template name="login">
 

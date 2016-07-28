@@ -15,12 +15,44 @@ Template.layout.events({
 
 //***** Here is the grammar coding part
 
-            if(jsonObject && jsonObject.result.parameters.homepage) {
-                  console.log("test if statment ");
-                  Router.go("home");
-            } else if (jsonObject && jsonObject.result.parameters.courses) {
-              Router.go("/courses");
-            }
+
+
+
+                  if(jsonObject && jsonObject.result.parameters.homepage) {
+                    console.log("Going to homepage...");
+                    Router.go("home");
+                  } else if (jsonObject && jsonObject.result.parameters.courses) {
+                    Router.go("/courses");
+                  } else if (jsonObject.result.metadata.contexts[0] === "myclass") {
+                     var language = (jsonObject.result.parameters.language).toLowerCase();
+                     var arrayOfClasses = Meteor.user().profile.classes;
+                     console.log("array of classes");
+                     console.dir(arrayOfClasses);
+                     console.log(arrayOfClasses.length);
+
+                     for(i=0; i<arrayOfClasses.length; i++) {
+                       var idObject = arrayOfClasses[i]._id;
+                       var courseOne = Courses.findOne({_id:idObject});
+                       console.log("courseOne is");
+                       console.dir(courseOne);
+                       var mycourseLangague = (courseOne.language).toLowerCase();
+                       var mycourseName = (courseOne.className).toLowerCase();
+                       console.dir(mycourseLangague);
+                       console.dir(language);
+
+                        if(mycourseLangague === language || mycourseName === language) {
+                          console.log("Going to your class...");
+                          var path = courseOne._id;
+                          Router.go('/coursePage/' + path);
+                          break;
+                        }
+
+                     }
+
+                     console.log("you are not enrolled.");
+
+                  }
+
 
 //** To this part
 
@@ -34,15 +66,46 @@ Template.layout.events({
               event.preventDefault();
               send();
               setTimeout(function(){
-                  console.log("testing jsonObject");
+
+                  console.log("jsonObject");
+
                   console.dir(jsonObject);
 //***** Here is the grammar coding part
 
                   if(jsonObject && jsonObject.result.parameters.homepage) {
-                    console.log("test if statment ");
+
+                    console.log("Going to homepage...");
                     Router.go("home");
                   } else if (jsonObject && jsonObject.result.parameters.courses) {
                     Router.go("/courses");
+                  } else if (jsonObject.result.metadata.contexts[0] === "myclass") {
+                     var language = jsonObject.result.parameters.language;
+                     var arrayOfClasses = Meteor.user().profile.classes;
+                     console.log("array of classes");
+                     console.dir(arrayOfClasses);
+                     console.log(arrayOfClasses.length);
+
+                     for(i=0; i<arrayOfClasses.length; i++) {
+                       var idObject = arrayOfClasses[i]._id;
+                       var courseOne = Courses.findOne({_id:idObject});
+                       console.log("courseOne is");
+                       console.dir(courseOne);
+                       var mycourseLangague = (courseOne.language).toLowerCase();
+                       var mycourseName = (courseOne.className).toLowerCase();
+                       console.dir(mycourseLangague);
+                       console.dir(language);
+
+                        if(mycourseLangague === language || mycourseName === language) {
+                          console.log("Going to your class...");
+                          var path = courseOne._id;
+                          Router.go('/coursePage/' + path);
+                          break;
+                        }
+
+                     }
+
+                     console.log("you are not enrolled.");
+
                   }
 
 //** To this part

@@ -1,7 +1,7 @@
 Template.makeQuestions.onCreated(function() {
   this.state = new ReactiveDict();
   this.state.setDefault({
-    questions: 1,
+    //questions: 1,
     showQuestion: false,
   });
 });
@@ -22,8 +22,8 @@ Template.makeQuestions.onCreated(function() {
 
   Template.makeQuestions.helpers({
 	questionNumber: function(){
-		const instance= Template.instance();
-		return instance.state.get("questions")
+		
+		return Questions.find({"metadata.assignment": this._id}).count()+1;
 		
 	},
 	showQuestion: function(){

@@ -136,7 +136,7 @@ Template.createAssignment.events({
   }
 })
 
-Template.showAssignment.helpers({
+Template.answerQuestion.helpers({
   recording: function(){
     const status = Recording.findOne();
     console.log("status='"+status.recording+"'"); console.dir(status);
@@ -149,30 +149,30 @@ Template.showAssignment.helpers({
 
 //let recordButton=null;
 
-Template.showAssignment.onRendered(function(){
+Template.answerQuestion.onRendered(function(){
   initAudio();
   recordButton = document.getElementById("record")
 })
 
-Template.showAssignment.events({
+Template.answerQuestion.events({
   "click #record": function(event){
     toggleRecording(document.getElementById("record"));
   },
-  "click .js-submit": function(event){
+  "click .js-submit": function(event, template){
     event.preventDefault();
-    const title= $("").val();
-    const text= $(".js-text").val(); 
+    //const title= $("").val();
+    //const text= $(".js-text").val(); 
     File.metadata= {
       ownerId:Meteor.userId(),
-      assignment:this._id
+      question:this._id
     }
 
 
-     const submissionId = Submissions.insert(File);
-  console.log("the submission insert returns this id ");
-  console.dir(submissionId);
+    Answers.insert(File);
+  //console.log("the submission insert returns this id ");
+  //console.dir(this);
     //console.dir(blob);
-    Router.go('showSubmission',{"_id":submissionId._id});
+    Router.go('showAssignment',{"_id":this.metadata.assignment});
   }
   
 
@@ -205,7 +205,7 @@ Template.makeQuestions.events({
   "click .js-enter": function(event){
     event.preventDefault();
     const instance= Template.instance();
-    const questions= instance.state.get("questions");
+    const questions= Questions.find({"metadata.assignment": this._id}).count()+1;
 
     //const title= $("").val();
     //const text= $(".js-text").val(); 

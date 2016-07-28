@@ -8,7 +8,7 @@
 	<h1>{{numSubmissions _id}} Submissions</h1>
 	{{#each s in submissions}}
 	<ul>
-		<a href="/showSubmission/{{s._id}}"> {{findUser s.metadata.ownerId}}'s Submision</a>	
+		<a href="/showSubmission/{{s._id}}"> {{findUser s.ownerId}}'s Submision</a>	
 	</ul>
 	{{/each}}
 
@@ -27,33 +27,15 @@
 		<h1>submit your response here</h1>
 
 		{{#each q in questions}}
-		<h2> Question {{q.metadata.question}}</h2>
-		<audio controls>
-
-		<source src="{{q.url}}" type="audio/wav">
-
-		</audio>
-		<br>
-
-		<div class="col-md-4">
-			<img id="record" src="/img/mic128.png">
-			<a id="save" href="#"><img src="/img/save.svg"></a>
-
-		</div>
-		<div>
-
-			<canvas id="analyser" width="1024" height="250"></canvas>
-
-		</div>
-
-		<div >
-
-			<canvas id="wavedisplay" width="1024" height="250"></canvas>
-
-
-		</div>
-		<button class="js-submit btn btn-lg btn-info">Submit</button>
+		<ul>
+		<a href="/answerQuestion/{{q._id}}"> Question {{q.metadata.question}}</a> 
+		{{#if submitted q}}
+		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		{{/if}}
+		</ul>
 		{{/each}}
+
+		<button class="js-submit btn btn-lg btn-info">Submit Assignment</button>
 		<br><br><br><br><br>
 
 		{{/if}}
@@ -74,12 +56,26 @@
 			<source src="{{a.url}}" type="audio/wav">
 		</audio>
 		<br>
-		<h2>Student Response:</h2>
-		<audio controls>
-			<source src="{{url}}" type="audio/wav">
-		</audio>
-		
 		{{/each}}
+
+		<h2>Student Response:</h2>
+		
+		{{#each q in questions}}
+		<h2>Question {{q.metadata.question}}</h2>
+		<audio controls>
+			<source src="{{q.url}}" type="audio/wav">
+		</audio>
+		<br>
+		{{#each a in answers q._id}}
+			Student: <br>
+			<audio controls>
+			<source src="{{a.url}}" type="audio/wav">
+			</audio>
+			<br>
+		{{/each}}
+		{{/each}}
+		
+		
 
 		<br>
 		<label for="comment">Feedback:</label>
@@ -110,6 +106,32 @@
 
 
 
-	<template name="showOneSubmission">
-		
+	<template name="answerQuestion">
+		<h2> Question {{metadata.question}}</h2>
+		<audio controls>
+
+		<source src="{{url}}" type="audio/wav">
+
+		</audio>
+		<br>
+
+		<div class="col-md-4">
+			<img id="record" src="/img/mic128.png">
+			<a id="save" href="#"><img src="/img/save.svg"></a>
+
+		</div>
+		<div>
+
+			<canvas id="analyser" width="1024" height="250"></canvas>
+
+		</div>
+
+		<div >
+
+			<canvas id="wavedisplay" width="1024" height="250"></canvas>
+
+
+		</div>
+		<button class="js-submit btn btn-lg btn-info">Submit</button>
+		<br><br><br><br>
 	</template>

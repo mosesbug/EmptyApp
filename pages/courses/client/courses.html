@@ -1,6 +1,9 @@
 <template name="courses">
-
+	{{#if checkType}}
+	<h1>Create a Course</h1>
+	{{else}}
 	<h1>Join a Course</h1>
+	{{/if}}
 
 
 		{{#if checkType}}
@@ -53,5 +56,5 @@
 
 	{{/if}}
 	</div>
-
+<br><br><br><br>
 </template>

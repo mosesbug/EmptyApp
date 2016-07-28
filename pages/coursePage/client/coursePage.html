@@ -1,7 +1,12 @@
 <template name="coursePage">
 
 	<div class="jumbotron">
+
+	<a href ="/flashcards/{{_id}}"><button type="button" class="pull-left btn btn-success btn-sm">
+  <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Flashcards
+</button></a>
 		
+		<br>
 		<h1>{{className}}</h1>
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
@@ -23,15 +28,24 @@
 	<ul>
 
 		{{#if submitted a}}
-			<p>True Returned</p>
-			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a>
+			
+			<a href="/showSubmission/{{lookupMySubmission a._id}}"> {{a.metadata.title}}</a> 
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		{{else}}
-			<p>False Returned</p>
-			<a href="/showAssignment/{{a._id}}"> {{a.metadata.title}}</a> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			
+			{{#if checkType}}
+			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a> 
+			({{numSubmitted a._id}} submitted)
+			{{else}}
+			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a> 
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			{{/if}}
+
 		{{/if}}
 		
 	</ul>
 	{{/each}}
+	
 	
 
 
@@ -41,7 +55,7 @@
 		Create Assignment
 	</button>
 	{{/if}}
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </template>
 
 
