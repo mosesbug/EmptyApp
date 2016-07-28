@@ -114,6 +114,15 @@ Template.practiceFlashcards.events({
 
 	// },
 
+	 "click .js-showAnswer": function(event){
+	 	event.preventDefault();
+	 	console.log("worked");
+
+		window.alert("The correct answer was: " + x.wordTwo);
+
+
+	},
+
 	 "click .js-submit": function(event){
 	 	event.preventDefault();
 	 	console.log("worked");
