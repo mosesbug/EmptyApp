@@ -2,8 +2,10 @@
 <template name="home">
 
   {{#if currentUser}}
+
   <h1><strong>Welcome back, {{name}}!</strong></h1>
   <hr>
+
 {{#if checkType}}
     <a href="/createClass">
     <button type="submit" class="btn btn-info js-create pull-right">Create New Course</button>
@@ -21,9 +23,11 @@
     {{#each course in myClassesTeacher}}
       {{>myClassesTeacherRow courses=course}}
     {{/each}}
+
     </tbody>
   </table>
   </div>
+
   {{else}}
   <div class="col-md-6">
   <table class="table table-bordered table-hover">
@@ -66,6 +70,7 @@
   <tr>  
     <td><a href="/coursePage/{{courses._id}}">{{courses.className}}</a></td>
   </tr>
+
 </template>
 
 <!-- <template name="allClassesRow">

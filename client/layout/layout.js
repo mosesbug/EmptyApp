@@ -17,6 +17,7 @@ Template.layout.events({
 
 
 
+
                   if(jsonObject && jsonObject.result.parameters.homepage) {
                     console.log("Going to homepage...");
                     Router.go("home");
@@ -52,6 +53,7 @@ Template.layout.events({
 
                   }
 
+
 //** To this part
 
           }, 5000);
@@ -64,11 +66,14 @@ Template.layout.events({
               event.preventDefault();
               send();
               setTimeout(function(){
+
                   console.log("jsonObject");
+
                   console.dir(jsonObject);
 //***** Here is the grammar coding part
 
                   if(jsonObject && jsonObject.result.parameters.homepage) {
+
                     console.log("Going to homepage...");
                     Router.go("home");
                   } else if (jsonObject && jsonObject.result.parameters.courses) {

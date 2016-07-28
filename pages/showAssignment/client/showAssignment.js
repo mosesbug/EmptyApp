@@ -5,35 +5,46 @@ Template.showAssignment.helpers({
 		console.log("checked");
 		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
 		console.log(Submissions.find().fetch());
-		return Submissions.find({"metadata.assignment": this._id});
+		return Submissions.find({"assignment": this._id});
 	},
 	
 	numSubmissions: function(){
 		console.log("checked");
 		// console.log(Submissions.find({"metadata.assignment": this._id}).fetch());
 		console.log(Submissions.find().fetch());
-		return Submissions.find({"metadata.assignment": this._id}).count();
+		return Submissions.find({"assignment": this._id}).count();
 	},
 
 	findUser: function(id){
 		var user = Meteor.users.findOne({'_id': id});
 		return user.profile.firstName+" "+user.profile.lastName;
-	}
+	},
+
+	questions: function(){
+		const x=Questions.find();
+		console.dir(x);
+		return Questions.find({"metadata.assignment": this._id})
+	},
+
+	submitted: function(question){
+		var y= Answers.findOne({"metadata.ownerId": Meteor.userId(), "metadata.question": question._id });
+		if (y!=null) {
+    		return true;
+	 	} else {
+   		return false;
+	 	}
+	 }
 })
 
 Template.showAssignment.events({
 
-	"click .js-submit-old": function(event){
+	"click .js-submit": function(event){
 		event.preventDefault();
 		console.log("worked");
 		const id = Meteor.userId()
-		const Assignment = this._id;
-
-		const submission = {Assignment:Assignment, id:id}
-
-		console.log(submission);
-
-		SubmissionsTwo.insert(feedbackComment);
+		const assignment = this._id;		
+		const submission=Submissions.insert({assignment:assignment, ownerId:Meteor.userId()});
+		Router.go('showSubmission',{"_id":submission._id})
 	}
 })
 
@@ -43,7 +54,7 @@ Template.showSubmission.helpers({
 
 	feedback: function(){
 
-		console.log(this.metadata.assignment);
+		console.log(this.assignment);
 		return Feedback.find({"id": this._id});
 	},
 	
@@ -51,8 +62,22 @@ Template.showSubmission.helpers({
 	assignments: function(){
 		console.log("assignments reached");
 		console.dir(this);
-		return Assignments.find({"_id": this.metadata.assignment});
-	}
+		return Assignments.find({"_id": this.assignment});
+	},
+
+	questions: function(){
+		const x=Questions.find();
+		console.dir(x);
+		return Questions.find({"metadata.assignment": this.assignment})
+	},
+
+	answers: function(id){
+		console.dir(Answers.find().fetch())
+		return Answers.find({"metadata.question": id, "metadata.ownerId":this.ownerId})
+	},
+
+	
+	
 })
 
 Template.showSubmission.events({
