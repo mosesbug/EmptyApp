@@ -41,7 +41,9 @@ Template.showcourse.helpers({
 Template.showcourse.events({
 	"click .js-join": function(event){
 		event.preventDefault();
+		const courseCode = $(".js-courseCode").val();
 
+		if (courseCode == this.courseCode) {
 			var numClasses = Meteor.user().profile.classes.length;
 			for(i = 0; i < numClasses; i++) {
 				if(Meteor.user().profile.classes[i]._id===this._id) {
@@ -53,16 +55,15 @@ Template.showcourse.events({
 
 			}
 
+			Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": this }});
 
-		Meteor.users.update(Meteor.userId(), {$push: {"profile.classes": this }});
+			console.log("updated successfully");	
 
-		console.log("updated successfully");
+			Router.go("/coursePage/"+this._id);
 
-
-
-
-
-	 	Router.go("/coursePage/"+this._id);
+		} else {
+			window.alert("Incorrect course code.");
+		}
 
 
 	},
