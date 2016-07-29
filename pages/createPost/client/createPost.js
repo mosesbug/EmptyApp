@@ -157,8 +157,7 @@ Template.answerQuestion.events({
     const title= $("").val();
     const text= $(".js-text").val();
     //const title= $("").val();
-<<<<<<< HEAD
-    const text= $(".js-text").val(); 
+
     if (this.metadata.type=="text"){
       const answer={
         ownerId:Meteor.userId(),
@@ -218,7 +217,7 @@ Template.makeQuestions.events({
     event.preventDefault();
     const instance= Template.instance();
     const questions= Questions.find({"metadata.assignment": this._id}).count()+1;
-<<<<<<< HEAD
+
     const text= $(".js-text").val();
     const type=$(".js-type").val();
     //const title= $("").val();
