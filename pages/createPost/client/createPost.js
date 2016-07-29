@@ -27,7 +27,9 @@ Template.createPost.events({
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
+    const text= $(".js-text").val();
+
+
     File.metadata= {
       ownerId:Meteor.userId(),
       title:title,
@@ -65,7 +67,7 @@ Template.audio.events({
   "click .js-submit": function(event){
     event.preventDefault();
     //const title= $(".js-title").val();
-    //const text= $(".js-text").val(); 
+    //const text= $(".js-text").val();
     Recordings.insert(File);
     //console.dir(blob);
     Router.go('/posts');
@@ -94,17 +96,22 @@ Template.createAssignment.onRendered(function(){
 Template.createAssignment.events({
   "click #record": function(event){
     toggleRecording(document.getElementById("record"));
-    
+
   },
     
+
 
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
+    const text= $(".js-text").val();
     console.dir(this._id);
+    console.log("test what this contains");
+    console.dir(this);
+
+    //Assginment fields;
     File.metadata= {
-      ownerId:Meteor.userId(),
+      userId:Meteor.userId(),
       title:title,
       text:text,
       course:this._id,
@@ -114,7 +121,7 @@ Template.createAssignment.events({
    const assignmentId= Assignments.insert(File);
     Router.go('makeQuestions',{"_id":assignmentId._id});
     //console.dir(blob);
-    
+
 
     //const instance= Template.instance();
     //const c = instance.state.get("newAssignment");
@@ -147,7 +154,10 @@ Template.answerQuestion.events({
   },
   "click .js-submit": function(event, template){
     event.preventDefault();
+    const title= $("").val();
+    const text= $(".js-text").val();
     //const title= $("").val();
+<<<<<<< HEAD
     const text= $(".js-text").val(); 
     if (this.metadata.type=="text"){
       const answer={
@@ -161,6 +171,9 @@ Template.answerQuestion.events({
     
 
     //console.dir(File);
+=======
+    //const text= $(".js-text").val();
+>>>>>>> 755780c23687a363c83f33eb8a9a57716da07d32
     File.metadata= {
       ownerId:Meteor.userId(),
       question:this._id,
@@ -175,7 +188,7 @@ Template.answerQuestion.events({
   }
     Router.go('showAssignment',{"_id":this.metadata.assignment});
   }
-  
+
 
 })
 
@@ -207,10 +220,14 @@ Template.makeQuestions.events({
     event.preventDefault();
     const instance= Template.instance();
     const questions= Questions.find({"metadata.assignment": this._id}).count()+1;
+<<<<<<< HEAD
     const text= $(".js-text").val();
     const type=$(".js-type").val();
     //const title= $("").val();
     //const text= $(".js-text").val(); 
+=======
+
+>>>>>>> 755780c23687a363c83f33eb8a9a57716da07d32
     File.metadata= {
       ownerId:Meteor.userId(),
       assignment:this._id,
@@ -228,7 +245,7 @@ Template.makeQuestions.events({
     console.dir(c);
     instance.state.set("showQuestion", false);;
   }
-  
+
 
 })
 
@@ -415,11 +432,11 @@ DEALINGS IN THE SOFTWARE.
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
     File=newFile;
-    
+
     //Recordings.insert(newFile);
     //console.dir(Recordings.find());
 
-    
+
   }
 
 
@@ -495,7 +512,7 @@ function toggleRecording( e ) {
         audioRecorder.getBuffers( gotBuffers );
         var blob=e.data;
 
-        
+
 
         const status = Recording.findOne();
         Recording.update(this._id,{$set:{recording:"not recording"}});
