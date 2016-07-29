@@ -43,8 +43,10 @@ Template.showAssignment.events({
 		event.preventDefault();
 		console.log("worked");
 		const id = Meteor.userId()
-		const assignment = this._id;		
-		const submission=Submissions.insert({assignment:assignment, ownerId:Meteor.userId()});
+		const assignment = this._id;
+		const assignmentObject = Assignments.findOne({"_id": assignment});
+		const courseId = assignmentObject.metadata.course;	
+		const submission=Submissions.insert({courseId: courseId, assignment:assignment, ownerId:Meteor.userId()});
 		Router.go('showSubmission',{"_id":submission})
 	}
 })

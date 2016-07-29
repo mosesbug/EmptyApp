@@ -13,6 +13,15 @@ Template.login.events({
   }
 });
 
+Template.myClassesRow.onCreated(function() {
+  event.preventDefault();
+  this.state = new ReactiveDict();
+  this.state.setDefault({
+    //questions: 1,
+    incompleteAssignments: 0,
+  });
+});
+
 Template.home.helpers({
   allClasses: function(){
     return Courses.find();
@@ -40,18 +49,26 @@ Template.home.helpers({
 
 Template.myClassesRow.helpers({
 
-  assignmentsSubmitted: function(courseId){
-    var assignments = Assignments.find({"metadata.course": courseId});
-    var incomplete = 0;
-    for (var i = assignments.length - 1; i >= 0; i--) {
-      var submission = lookupMySubmission(assignments[i]._id)
-      console.log("submission below");
-      console.log(submission);
-      if (submission = "") {
-        incomplete = incomplete + 1;
-      }
-    }
-    return incomplete;
+  assignments: function(){
+    console.log("check loop");
+    return Assignments.find({"metadata.course": id});
+  },
+
+  assignmentsNotSubmitted: function(courseId){
+      
+      console.log("gabe is a hard worker")
+      const total = Assignments.find({"metadata.course": courseId});
+      console.dir(total.fetch());
+      const submitted = Submissions.find({"courseId": courseId, "ownerId": Meteor.userId()});
+      console.dir(submitted.fetch());
+      
+        return total.count() - submitted.count();
+    
+  },
+
+  returnAssignments: function() {
+    const instance = Template.instance();
+    return instance.state.get("incompleteAssignments");
   },
 });
 
