@@ -25,7 +25,7 @@ Template.createPost.events({
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
+    const text= $(".js-text").val();
     File.metadata= {
       ownerId:Meteor.userId(),
       title:title,
@@ -63,7 +63,7 @@ Template.audio.events({
   "click .js-submit": function(event){
     event.preventDefault();
     //const title= $(".js-title").val();
-    //const text= $(".js-text").val(); 
+    //const text= $(".js-text").val();
     Recordings.insert(File);
     //console.dir(blob);
     Router.go('/posts');
@@ -96,13 +96,17 @@ Template.createAssignment.events({
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $(".js-title").val();
-    const text= $(".js-text").val(); 
+    const text= $(".js-text").val();
     console.dir(this._id);
+    console.log("test what this contains");
+    console.dir(this);
+
+    //Assginment fields;
     File.metadata= {
-      ownerId:Meteor.userId(),
+      userId:Meteor.userId(),
       title:title,
       text:text,
-      course:this._id
+      courseId:this._id
     }
 
     Assignments.insert(File);
@@ -136,7 +140,7 @@ Template.showAssignment.events({
   "click .js-submit": function(event){
     event.preventDefault();
     const title= $("").val();
-    const text= $(".js-text").val(); 
+    const text= $(".js-text").val();
     File.metadata= {
       ownerId:Meteor.userId(),
       assignment:this._id
@@ -335,11 +339,11 @@ DEALINGS IN THE SOFTWARE.
     var newFile= new FS.File(blob);
     newFile.ownerId= this.userId;
     File=newFile;
-    
+
     //Recordings.insert(newFile);
     //console.dir(Recordings.find());
 
-    
+
   }
 
 
@@ -415,7 +419,7 @@ function toggleRecording( e ) {
         audioRecorder.getBuffers( gotBuffers );
         var blob=e.data;
 
-        
+
 
         const status = Recording.findOne();
         Recording.update(this._id,{$set:{recording:"not recording"}});

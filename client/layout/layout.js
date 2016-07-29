@@ -73,7 +73,7 @@ Template.layout.events({
                     Router.go("home");
                   } else if (jsonObject && jsonObject.result.parameters.courses) {
                     Router.go("/courses");
-                  } else if (jsonObject.result.metadata.contexts[0] === "myclass") {
+                  } else if (jsonObject.result.metadata.contexts[0] === "myclass"&& jsonObject.result.parameters.language) {
                      var language = jsonObject.result.parameters.language;
                      var arrayOfClasses = Meteor.user().profile.classes;
                      console.log("array of classes");
@@ -100,6 +100,29 @@ Template.layout.events({
                      }
 
                      console.log("you are not enrolled.");
+                  // ******  Assignment code
+                }
+
+
+              else  if (jsonObject.result.parameters.assignment || jsonObject.result.parameters.titleofassignment) {
+                    console.log("json assignment passed!");
+                    console.dir(Assignments.findOne());
+
+                    if(Assignments.findOne()) {
+                      var titleofassignment = jsonObject.result.parameters.titleofassignment;
+                      console.log("titleofassignment");
+                      console.dir(titleofassignment);
+                      console.dir(Assignments.findOne({metadata: {userId: titleofassignment}}));
+                        if(titleofassignment === Assignments.find({title: "titleofassignment"}).title) {
+                          Router.go
+                        }
+
+
+                    }else {
+                      console.log("you don't have any assignment right now");
+                    }
+
+
 
                   }
 
