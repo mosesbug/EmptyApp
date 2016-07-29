@@ -1,6 +1,7 @@
 var File;
 
 
+
 Template.createPost.helpers({
   recording: function(){
     const status = Recording.findOne();
@@ -96,20 +97,6 @@ Template.createAssignment.events({
     
   },
     
-  "click .js-question": function(event){
-    event.preventDefault();
-    //const title= $(".js-title").val();
-    //const text= $(".js-text").val(); 
-    File.metadata= {
-      ownerId:Meteor.userId(),
-      question:1,
-      assignment:this._id 
-    }
-
-    Recordings.insert(File);
-    
-  },
-
 
   "click .js-submit": function(event){
     event.preventDefault();
@@ -129,10 +116,10 @@ Template.createAssignment.events({
     //console.dir(blob);
     
 
-    const instance= Template.instance();
-    const c = instance.state.get("newAssignment");
-    console.dir(c);
-    instance.state.set("newAssignment", false);
+    //const instance= Template.instance();
+    //const c = instance.state.get("newAssignment");
+    //console.dir(c);
+    //instance.state.set("newAssignment", false);
   }
 })
 
@@ -161,10 +148,23 @@ Template.answerQuestion.events({
   "click .js-submit": function(event, template){
     event.preventDefault();
     //const title= $("").val();
-    //const text= $(".js-text").val(); 
+    const text= $(".js-text").val(); 
+    if (this.metadata.type=="text"){
+      const answer={
+        ownerId:Meteor.userId(),
+        question:this._id,
+        text:text,
+      }
+
+      TextAnswers.insert(answer)
+    } else{
+    
+
+    //console.dir(File);
     File.metadata= {
       ownerId:Meteor.userId(),
-      question:this._id
+      question:this._id,
+      text:text,
     }
 
 
@@ -172,6 +172,7 @@ Template.answerQuestion.events({
   //console.log("the submission insert returns this id ");
   //console.dir(this);
     //console.dir(blob);
+  }
     Router.go('showAssignment',{"_id":this.metadata.assignment});
   }
   
@@ -206,13 +207,16 @@ Template.makeQuestions.events({
     event.preventDefault();
     const instance= Template.instance();
     const questions= Questions.find({"metadata.assignment": this._id}).count()+1;
-
+    const text= $(".js-text").val();
+    const type=$(".js-type").val();
     //const title= $("").val();
     //const text= $(".js-text").val(); 
     File.metadata= {
       ownerId:Meteor.userId(),
       assignment:this._id,
-      question:questions
+      question:questions,
+      text:text,
+      type: type
     }
 
 
