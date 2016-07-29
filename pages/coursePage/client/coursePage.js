@@ -11,12 +11,12 @@ Template.coursePage.helpers({
 		//console.log(this);
 		//return Courses.find({className: this.className});
 	//},
-		
+
 		numSubmitted: function(aId){
 			const numSubmitted = Submissions.find({"assignment":aId}).count();
 			return numSubmitted;
 		},
-		
+
 		lookupMySubmission: function(aId){
 			const data = {"assignment":aId,"ownerId":Meteor.userId()};
 			console.dir(data);
@@ -49,18 +49,21 @@ Template.coursePage.helpers({
 })
 
 Template.coursePage.events({
+
+	// ******* CREATE FUNCTION
+
 	"click .js-create-assignment": function(event){
 
 		Router.go("/createAssignment/"+this._id);
 
 	},
-
+// ******* REMOVE FUNCTION
 		"click .js-remove": function(event){
 		event.preventDefault();
 		console.log("Clicked the remove button");
 
 		if(Meteor.user() && Meteor.userId() === this.instructor._id ) {
-			
+
 			var r = confirm("You are about to delete this course. Are you sure?");
 			if (r == true) {
 				x = "You pressed OK!";
@@ -91,7 +94,7 @@ Template.coursePage.events({
 			} else {
 				x = "You pressed Cancel!";
 			}
-		
+
 		} else {
 			console.log("you don't have access to delete this class");
 			window.alert("You don't have access to delete this class.");
