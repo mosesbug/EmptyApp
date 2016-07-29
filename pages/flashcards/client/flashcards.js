@@ -3,7 +3,7 @@ var x;
 Template.flashcards.helpers({
 	flashcards:function(){
 		console.log(this._id);
-		return Flashcards.find({courseId: this._id});
+		return Flashcards.find({courseId: this._id}, {sort:{name:1}});
 	},
 
 })
@@ -29,7 +29,15 @@ Template.flashcardSet.helpers({
 Template.practiceFlashcards.helpers({
 	flashcardPairs:function(){
 		console.log("working");
-		x = FlashcardPairs.findOne({flashcardId: this._id});
+		x = FlashcardPairs.find({flashcardId: this._id}).fetch();
+		max = x.length - 1;
+		console.log("Max " + max);
+		var random = Math.floor((Math.random() * max));
+		console.log("Random " + random);
+		x = x[random];
+		console.log(x);
+
+
 		return x;
 	},
 })
@@ -61,7 +69,7 @@ Template.createFlashcards.events({
 		// console.dir(pair);
 
 
-		Router.go("/flashcards/{{_id}}");
+		Router.go("/flashcards/" + this._id);
 	},
 })
 
@@ -120,6 +128,8 @@ Template.practiceFlashcards.events({
 
 		window.alert("The correct answer was: " + x.wordTwo);
 
+		document.location.reload(true);
+
 
 	},
 
@@ -131,6 +141,7 @@ Template.practiceFlashcards.events({
 		if (guess == x.wordTwo) {
 			window.alert("Correct!");
 			console.log("correct");
+			document.location.reload(true);
 		} else {
 			window.alert("Incorrect. Try again");
 		}
