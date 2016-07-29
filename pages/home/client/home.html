@@ -32,7 +32,7 @@
   <div class="col-md-6">
   <table class="table table-bordered table-hover">
     <thead>
-      <tr><th>Class</th><th>Instructor</th></tr>
+      <tr><th>Class</th><th>Instructor</th><th>Assignments</th></tr>
     </thead>
     <tbody>
     {{#each class in myClasses}}
@@ -63,6 +63,7 @@
   <tr>
     <td><a href="/coursePage/{{c._id}}">{{c.className}}</a></td>
     <td>{{c.instructorFirst}} {{c.instructorLast}}</td>
+    <td>{{assignmentsSubmitted c._id}} assignment(s) incomplete</td>
   </tr>
 </template>
 

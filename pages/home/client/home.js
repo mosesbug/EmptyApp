@@ -35,6 +35,24 @@ Template.home.helpers({
     console.log("myclasses home display works");
     return Courses.find({'instructor._id': Meteor.userId()});
   },
+
+});
+
+Template.myClassesRow.helpers({
+
+  assignmentsSubmitted: function(courseId){
+    var assignments = Assignments.find({"metadata.course": courseId});
+    var incomplete = 0;
+    for (var i = assignments.length - 1; i >= 0; i--) {
+      var submission = lookupMySubmission(assignments[i]._id)
+      console.log("submission below");
+      console.log(submission);
+      if (submission = "") {
+        incomplete = incomplete + 1;
+      }
+    }
+    return incomplete;
+  },
 });
 
 Template.registerHelper('checkType', () => {
