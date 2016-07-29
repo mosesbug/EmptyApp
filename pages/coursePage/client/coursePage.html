@@ -17,7 +17,6 @@
 				Delete Course
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
-
 	{{/if}}
 
 	</div>
@@ -27,6 +26,13 @@
 
 
 	<ul>
+
+	{{#if checkType}}
+	<button class="js-create-assignment pull-right btn btn-lg btn-info">
+		Create Assignment
+	</button>
+	{{/if}}
+	<br>
 
 		{{#if submitted a}}
 
@@ -48,10 +54,6 @@
 	{{/each}}
 
 
-	{{#if checkType}}
-	<button class="js-create-assignment pull-right btn btn-lg btn-info">
-		Create Assignment
-	</button>
-	{{/if}}
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </template>
