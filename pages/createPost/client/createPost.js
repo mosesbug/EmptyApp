@@ -27,6 +27,8 @@ Template.createPost.events({
     event.preventDefault();
     const title= $(".js-title").val();
     const text= $(".js-text").val();
+
+
     File.metadata= {
       ownerId:Meteor.userId(),
       title:title,

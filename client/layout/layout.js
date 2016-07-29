@@ -17,16 +17,14 @@ Template.layout.events({
 
 //***** Here is the grammar coding part
 
-
-
-
                   if(jsonObject && jsonObject.result.parameters.homepage) {
+
                     console.log("Going to homepage...");
                     Router.go("home");
                   } else if (jsonObject && jsonObject.result.parameters.courses) {
                     Router.go("/courses");
-                  } else if (jsonObject.result.metadata.contexts[0] === "myclass") {
-                     var language = (jsonObject.result.parameters.language).toLowerCase();
+                  } else if (jsonObject.result.metadata.contexts[0] === "myclass"&& jsonObject.result.parameters.language) {
+                     var language = jsonObject.result.parameters.language;
                      var arrayOfClasses = Meteor.user().profile.classes;
                      console.log("array of classes");
                      console.dir(arrayOfClasses);
@@ -37,6 +35,7 @@ Template.layout.events({
                        var courseOne = Courses.findOne({_id:idObject});
                        console.log("courseOne is");
                        console.dir(courseOne);
+                       myclass = courseOne._id;
                        var mycourseLangague = (courseOne.language).toLowerCase();
                        var mycourseName = (courseOne.className).toLowerCase();
                        console.dir(mycourseLangague);
@@ -52,7 +51,72 @@ Template.layout.events({
                      }
 
                      console.log("you are not enrolled.");
+                  // ******  Assignment code
+                }
 
+
+              else  if (jsonObject.result.parameters.assignment || jsonObject.result.parameters.titleofassignment) {
+                    console.log("json assignment passed!");
+                    console.dir(Assignments.findOne());
+                    console.log("CourseOne in Assignment!!");
+                    console.dir(myclass);
+                    console.log("how many assignment do you have in this class");
+                    var numOfAssignments = Assignments.find({'metadata.course':myclass}).count();
+                    console.dir(numOfAssignments);
+
+                    if(!numOfAssignments) {
+                      var say2 = "you don't have any assignments"
+                      respond(say2);
+                    }
+
+                    if(numOfAssignments>0) {
+                      var say1 = "total you have " + numOfAssignments + " assignments";
+                      respond(say1);
+                      console.log("assignment fetch for for loop");
+                      console.dir(Assignments.find({'metadata.course':myclass}).fetch());
+                      var assignmentArray = Assignments.find({'metadata.course':myclass}).fetch();
+                      console.dir(assignmentArray[0].metadata.title);
+
+                      for(i=0; i<numOfAssignments; i++) {
+                        var listOfAssignments = assignmentArray[i].metadata.title;
+                        respond(listOfAssignments);
+                      }
+
+                      respond("Which assignments would you like to go?");
+
+
+
+
+                    }else {
+
+                    }
+
+                    if(Assignments.findOne()) {
+                      var titleofassignment = jsonObject.result.parameters.titleofassignment;
+
+                      console.dir(Assignments.findOne({metadata: {userId: titleofassignment}}));
+                        if(titleofassignment === Assignments.find({title: "titleofassignment"}).title) {
+                          Router.go
+                        }
+
+
+                    }else {
+                      console.log("you don't have any assignment right now");
+                    }
+
+
+                    //# Assignment code 2
+                  } else if (jsonObject.result.metadata.contexts[1] === "myassignment") {
+                    var titleOfAssignment = jsonObject.result.resolvedQuery;
+                    var titleOfAssignment2 = titleOfAssignment.toUpperCase()
+                    console.log("titleOfassignment is ");
+                    console.dir(titleOfAssignment);
+    //                var titleOfAssignment2 = (jsonObject.result.resolvedQuery).replace(/\s+/, "");
+                      if(Assignments.findOne({'metadata.title': titleOfAssignment}) || Assignments.findOne({'metadata.title': titleOfAssignment2})) {
+                        respond("Just kidding, Going to " + titleOfAssignment);
+                       var courseId = Assignments.findOne({'metadata.title': titleOfAssignment})._id;
+                        Router.go("/showAssignment/" + courseId);
+                      }
                   }
 
 
@@ -165,12 +229,17 @@ Template.layout.events({
                     //# Assignment code 2
                   } else if (jsonObject.result.metadata.contexts[1] === "myassignment") {
                     var titleOfAssignment = jsonObject.result.resolvedQuery;
+                    var titleOfAssignment2 = titleOfAssignment.toUpperCase()
+                    console.log("titleOfassignment is ");
+                    console.dir(titleOfAssignment);
+    //                var titleOfAssignment2 = (jsonObject.result.resolvedQuery).replace(/\s+/, "");
                       if(Assignments.findOne({'metadata.title': titleOfAssignment})) {
                         respond("Just kidding, Going to " + titleOfAssignment);
                        var courseId = Assignments.findOne({'metadata.title': titleOfAssignment})._id;
                         Router.go("/showAssignment/" + courseId);
                       }
                   }
+
 
 //** To this part
                 }, 3000);
