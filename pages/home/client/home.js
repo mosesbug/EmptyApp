@@ -32,7 +32,7 @@ Template.home.helpers({
   },
 
   myClassesTeacher: function(){
-    console.log("myclasses home dispaly works");
+    console.log("myclasses home display works");
     return Courses.find({'instructor._id': Meteor.userId()});
   },
 });

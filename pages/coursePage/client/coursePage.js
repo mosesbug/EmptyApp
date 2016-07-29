@@ -13,14 +13,14 @@ Template.coursePage.helpers({
 	//},
 
 		numSubmitted: function(aId){
-			const numSubmitted = Submissions.find({"metadata.assignment":aId}).count();
+			const numSubmitted = Submissions.find({"assignment":aId}).count();
 			return numSubmitted;
 		},
 
 		lookupMySubmission: function(aId){
-			const metadata = {"metadata.assignment":aId,"metadata.ownerId":Meteor.userId()};
-			console.dir(metadata);
-			const mySubmission = Submissions.findOne(metadata);
+			const data = {"assignment":aId,"ownerId":Meteor.userId()};
+			console.dir(data);
+			const mySubmission = Submissions.findOne(data);
 			console.dir(mySubmission); console.log("is my submission");
 			return mySubmission._id;
 		},
@@ -32,7 +32,7 @@ Template.coursePage.helpers({
 	submitted: function (assignment) {
 	// 	var x = 5; //Submissions.find({"ownerId": Meteor.userId(), "assignment": this._id});
 	    console.log("submitted fn with assignment = "); console.dir( assignment);
-	 	var y= Submissions.findOne({"metadata.ownerId": Meteor.userId(), "metadata.assignment": assignment._id });
+	 	var y= Submissions.findOne({"ownerId": Meteor.userId(), "assignment": assignment._id });
 		console.dir(y);
 	// 	// Meteor.users.findOne({'_id': Meteor.userId()});
 	// 	console.dir("hey");
@@ -90,7 +90,7 @@ Template.coursePage.events({
 					console.log(a[i].profile.classes)
 				}
 				Courses.remove({_id: this._id});
-				Router.go("/courses");
+				Router.go("/");
 			} else {
 				x = "You pressed Cancel!";
 			}
