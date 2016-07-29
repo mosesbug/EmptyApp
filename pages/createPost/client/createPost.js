@@ -171,9 +171,7 @@ Template.answerQuestion.events({
     
 
     //console.dir(File);
-=======
-    //const text= $(".js-text").val();
->>>>>>> 755780c23687a363c83f33eb8a9a57716da07d32
+
     File.metadata= {
       ownerId:Meteor.userId(),
       question:this._id,
@@ -225,9 +223,7 @@ Template.makeQuestions.events({
     const type=$(".js-type").val();
     //const title= $("").val();
     //const text= $(".js-text").val(); 
-=======
 
->>>>>>> 755780c23687a363c83f33eb8a9a57716da07d32
     File.metadata= {
       ownerId:Meteor.userId(),
       assignment:this._id,
