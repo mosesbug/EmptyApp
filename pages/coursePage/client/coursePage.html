@@ -22,16 +22,16 @@
 	</div>
 
 	<h1>Assignments</h1>
-	{{#each a in assignments}}
-
-
-	<ul>
-
 	{{#if checkType}}
 	<button class="js-create-assignment pull-right btn btn-lg btn-info">
 		Create Assignment
 	</button>
 	{{/if}}
+	{{#each a in assignments}}
+
+
+	<ul>
+
 	<br>
 
 		{{#if submitted a}}
