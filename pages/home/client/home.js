@@ -7,6 +7,7 @@ Template.login.events({
     Meteor.loginWithPassword(emailVar, passwordVar, function(error){
       if(error) {
         console.log("login failed. Try again or create an account");
+        window.alert("Account does not exist.");
       }
     });
     Router.go('home');
