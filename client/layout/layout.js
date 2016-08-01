@@ -74,7 +74,7 @@ Template.layout.events({
 
                   console.log("created a class successfully");
                   respond("created a class successfully");
-
+                  toastr.info("created a class successfully");
 
 
 
@@ -102,6 +102,7 @@ Template.layout.events({
                     console.log("Hello rjoung class name clas of ctitle");
                     Router.go("/showcourse/" + Courses.find({className: titleOfClass}).fetch()[0]._id);
                     respond(titleOfClass);
+                    toastr.info(titleOfClass);
                   }else {
                     respond("We don't offer " + titleOfClass + "  Please say other course name");
                   }
@@ -158,10 +159,11 @@ Template.layout.events({
                 Router.go('/createClass');
                 console.log("creating a course metadat inttent name passesd");
                 respond("Welcome to Create a course page. Please, fill up the form and click the create button or Say submit");
-
+                toastr.info("Create a course page");
 
               } else {
                   respond("You're a student, cannot create a course");
+                  toastr.info("You're a student, cannot create a course");
                 }
               }
 
@@ -231,7 +233,7 @@ Template.layout.events({
                 }
 
                 respond("Which assignments would you like to go?");
-
+                toastr.info("Which assignments would you like to go?");
 
 
 
@@ -565,6 +567,7 @@ function startRecognition() {
          recognition.interimResults = false;
      recognition.onstart = function(event) {
        respond(messageRecording);
+       toastr.info("Talk to me, I'm listening");
        updateRec();
      };
      recognition.onresult = function(event) {
