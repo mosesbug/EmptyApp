@@ -36,7 +36,7 @@
 		{{/each}}
 
 		<button class="js-submit btn btn-lg btn-info">Submit Assignment</button>
-		<br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br>
 
 
 		{{/if}}
@@ -67,12 +67,16 @@
 			<source src="{{q.url}}" type="audio/wav">
 		</audio>
 		<br>
-		{{#each a in answers q._id}}
+		{{#each a in answers q}}
 			Student: <br>
+			{{a.text}}<br>
+			{{#if showAudio q}}
+			{{a.metadata.text}}<br>
 			<audio controls>
 			<source src="{{a.url}}" type="audio/wav">
 			</audio>
 			<br>
+			{{/if}}
 		{{/each}}
 		{{/each}}
 		
@@ -100,7 +104,7 @@
 
 		{{/each}}
 
-					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br><br>
 
 
 	</template>
@@ -109,13 +113,20 @@
 
 	<template name="answerQuestion">
 		<h2> Question {{metadata.question}}</h2>
+		<h4>{{metadata.text}}</h4>
 		<audio controls>
 
 		<source src="{{url}}" type="audio/wav">
 
 		</audio>
 		<br>
-
+		{{#if showText}}
+		<div class="form-group">
+  							<label for="comment">Text:</label>
+  							<textarea class="js-text form-control" rows=5 id="text"></textarea>
+						</div>
+		{{/if}}
+		{{#if showMic}}
 		<div class="col-md-4">
 			<img id="record" src="/img/mic128.png">
 			<a id="save" href="#"><img src="/img/save.svg"></a>
@@ -133,6 +144,7 @@
 
 
 		</div>
+		{{/if}}
 		<button class="js-submit btn btn-lg btn-info">Submit</button>
-		<br><br><br><br>
+		<br><br><br><br><br><br><br><br>
 	</template>

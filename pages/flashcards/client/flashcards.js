@@ -1,9 +1,12 @@
 var x;
+var max;
+var random;
+var array;
 
 Template.flashcards.helpers({
 	flashcards:function(){
 		console.log(this._id);
-		return Flashcards.find({courseId: this._id});
+		return Flashcards.find({courseId: this._id}, {sort:{name:1}});
 	},
 
 })
@@ -26,13 +29,34 @@ Template.flashcardSet.helpers({
 	// },
 })
 
+Template.practiceFlashcards.onCreated(function() {
+  this.state = new ReactiveDict();
+  	console.log(this);
+	console.log("working");
+	array = FlashcardPairs.find({flashcardId: this.data._id}).fetch();
+	console.log(x);
+	max = array.length - 1;
+	console.log("Max " + max);
+	var random = Math.floor((Math.random() * max));
+	console.log("Random " + random);
+	x = array[random];
+	console.log(x);
+
+
+  this.state.setDefault({
+    pair: x.wordOne,   
+  });
+
+});
+
 Template.practiceFlashcards.helpers({
 	flashcardPairs:function(){
-		console.log("working");
-		x = FlashcardPairs.findOne({flashcardId: this._id});
-		return x;
+		const instance = Template.instance();
+		return instance.state.get("pair");
 	},
 })
+
+
 
 
 Template.createFlashcards.events({
@@ -61,7 +85,7 @@ Template.createFlashcards.events({
 		// console.dir(pair);
 
 
-		Router.go("/flashcards/{{_id}}");
+		Router.go("/flashcards/" + this._id);
 	},
 })
 
@@ -114,23 +138,31 @@ Template.practiceFlashcards.events({
 
 	// },
 
-	 "click .js-showAnswer": function(event){
+	 "click .js-showAnswer": function(event, instance){
 	 	event.preventDefault();
 	 	console.log("worked");
 
 		window.alert("The correct answer was: " + x.wordTwo);
 
-
+		random = Math.floor((Math.random() * max));
+		x = array[random];
+		$(".js-guess").val("");
+		instance.state.set("pair", x.wordOne);
 	},
 
-	 "click .js-submit": function(event){
+	 "click .js-submit": function(event, instance){
+
 	 	event.preventDefault();
 	 	console.log("worked");
 		const guess = $(".js-guess").val();
 
-		if (guess == x.wordTwo) {
+		if (guess == x.wordTwo) { 
 			window.alert("Correct!");
 			console.log("correct");
+			random = Math.floor((Math.random() * max));
+			x = array[random];
+			$(".js-guess").val("");
+			instance.state.set("pair", x.wordOne);
 		} else {
 			window.alert("Incorrect. Try again");
 		}

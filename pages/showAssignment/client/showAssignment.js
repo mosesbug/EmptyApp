@@ -28,7 +28,8 @@ Template.showAssignment.helpers({
 
 	submitted: function(question){
 		var y= Answers.findOne({"metadata.ownerId": Meteor.userId(), "metadata.question": question._id });
-		if (y!=null) {
+		var x= TextAnswers.findOne({"ownerId": Meteor.userId(), "question": question._id})
+		if (y!=null||x!=null) {
     		return true;
 	 	} else {
    		return false;
@@ -42,9 +43,11 @@ Template.showAssignment.events({
 		event.preventDefault();
 		console.log("worked");
 		const id = Meteor.userId()
-		const assignment = this._id;		
-		const submission=Submissions.insert({assignment:assignment, ownerId:Meteor.userId()});
-		Router.go('showSubmission',{"_id":submission._id})
+		const assignment = this._id;
+		const assignmentObject = Assignments.findOne({"_id": assignment});
+		const courseId = assignmentObject.metadata.course;	
+		const submission=Submissions.insert({courseId: courseId, assignment:assignment, ownerId:Meteor.userId()});
+		Router.go('showSubmission',{"_id":submission})
 	}
 })
 
@@ -71,10 +74,18 @@ Template.showSubmission.helpers({
 		return Questions.find({"metadata.assignment": this.assignment})
 	},
 
-	answers: function(id){
+	answers: function(q){
 		console.dir(Answers.find().fetch())
-		return Answers.find({"metadata.question": id, "metadata.ownerId":this.ownerId})
+		if(q.metadata.type!="text"){
+		return Answers.find({"metadata.question": q._id, "metadata.ownerId":this.ownerId})
+		} else{
+			return TextAnswers.find({"question": q._id, "ownerId": this.ownerId})
+		}
 	},
+
+	showAudio: function(q){
+		return q.metadata.type!="text";
+	}
 
 	
 	
@@ -95,5 +106,16 @@ Template.showSubmission.events({
 		console.log(feedbackComment);
 
 		Feedback.insert(feedbackComment);
+	}
+})
+
+Template.answerQuestion.helpers({
+
+	showText: function(){
+		return this.metadata.type=="text"||this.metadata.type=="both"
+	},
+
+	showMic: function(){
+		return this.metadata.type=="audio"||this.metadata.type=="both"
 	}
 })

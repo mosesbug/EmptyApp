@@ -7,10 +7,20 @@ Template.login.events({
     Meteor.loginWithPassword(emailVar, passwordVar, function(error){
       if(error) {
         console.log("login failed. Try again or create an account");
+        window.alert("Account does not exist.");
       }
     });
     Router.go('home');
   }
+});
+
+Template.myClassesRow.onCreated(function() {
+  event.preventDefault();
+  this.state = new ReactiveDict();
+  this.state.setDefault({
+    //questions: 1,
+    incompleteAssignments: 0,
+  });
 });
 
 Template.home.helpers({
@@ -34,6 +44,32 @@ Template.home.helpers({
   myClassesTeacher: function(){
     console.log("myclasses home display works");
     return Courses.find({'instructor._id': Meteor.userId()});
+  },
+
+});
+
+Template.myClassesRow.helpers({
+
+  assignments: function(){
+    console.log("check loop");
+    return Assignments.find({"metadata.course": id});
+  },
+
+  assignmentsNotSubmitted: function(courseId){
+      
+      console.log("gabe is a hard worker")
+      const total = Assignments.find({"metadata.course": courseId});
+      console.dir(total.fetch());
+      const submitted = Submissions.find({"courseId": courseId, "ownerId": Meteor.userId()});
+      console.dir(submitted.fetch());
+      
+        return total.count() - submitted.count();
+    
+  },
+
+  returnAssignments: function() {
+    const instance = Template.instance();
+    return instance.state.get("incompleteAssignments");
   },
 });
 
