@@ -2,17 +2,17 @@
 
 	<div class="jumbotron">
 
-	<a href ="/flashcards/{{_id}}"><button type="button" class="pull-left btn btn-success btn-sm">
+	<a href ="/flashcards/{{_id}}"><button type="button" class="pull-right btn btn-success btn-sm">
   <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Flashcards
 </button></a>
 
-		<br>
 		<h1>{{className}}</h1>
 		<h4>{{instructorFirst}} {{instructorLast}}, {{collegeUniversity}}, {{language}}</h4>
 		<br>
 		<p>{{description}}</p>
 
-		{{#if checkType}}
+
+	{{#if checkType}}
 			<button class="js-remove pull-right btn btn-sm btn-danger">
 				Delete Course
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -21,18 +21,23 @@
 
 	</div>
 
+
+
 	<h1>Assignments</h1>
-	{{#each a in assignments}}
-
-
-	<ul>
-
-	{{#if checkType}}
+		{{#if checkType}}
 	<button class="js-create-assignment pull-right btn btn-lg btn-info">
 		Create Assignment
 	</button>
 	{{/if}}
+	
+	{{#each a in assignments}}
+
+
+
+
 	<br>
+
+	<ul>
 
 		{{#if submitted a}}
 
