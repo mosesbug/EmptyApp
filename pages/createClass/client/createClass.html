@@ -9,7 +9,7 @@
 
     <div class="form-group">
      <label for="className">College/University:</label>
-     <select type= "text" class="form-control js-collegeUniversity">
+     <select type= "text" style="color:darkcyan" class="form-control js-collegeUniversity">
       <option></option>
       {{#each c in schools}}
       <option>{{c.name}}</option>
@@ -31,7 +31,7 @@
 
     <div class="form-group">
      <label for="className">Language:</label>
-     <select type= "text" class="form-control js-language">
+     <select type= "text" style="color:green" class="form-control js-language">
       <option></option>
       {{#each c in languages}}
       <option>{{c.name}}</option>
@@ -49,7 +49,7 @@
     <label for="courseCode">Course Code:</label>
     <input type="courseCode" class="form-control js-courseCode" id="courseCode">
   </div>
-  <button type="submit" class="btn btn-primary pull-right js-create">Create</button>
+  <button type="submit" class="btn btn-info pull-right js-create">Create</button>
 </form>
 
 <br><br><br><br><br><br><br><br><br>
