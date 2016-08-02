@@ -34,6 +34,10 @@ Template.showAssignment.helpers({
 	 	} else {
    		return false;
 	 	}
+	 },
+
+	 showAudio: function(){
+	 	return this.metadata.showAudio
 	 }
 })
 
@@ -85,6 +89,10 @@ Template.showSubmission.helpers({
 
 	showAudio: function(q){
 		return q.metadata.type!="text";
+	},
+
+	audio: function(a){
+		return a.metadata.showAudio
 	}
 
 	

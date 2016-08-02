@@ -232,10 +232,13 @@ Template.makeQuestions.events({
   "click .js-enter": function(event){
     event.preventDefault();
     const instance= Template.instance();
+    const audio= instance.state.get("audio");
     const questions= Questions.find({"metadata.assignment": this._id}).count()+1;
 
     const text= $(".js-text").val();
     const type=$(".js-type").val();
+
+    if(audio){
     //const title= $("").val();
     //const text= $(".js-text").val(); 
 
@@ -244,9 +247,20 @@ Template.makeQuestions.events({
       assignment:this._id,
       question:questions,
       text:text,
-      type: type
+      type: type,
+      audio: true
     }
-
+  } else{
+    File= new FS.File({})
+    File.metadata={
+      ownerId:Meteor.userId(),
+      assignment:this._id,
+      question:questions,
+      text:text,
+      type: type,
+      audio: false
+    }
+  }
 
    Questions.insert(File);
   //console.log("the submission insert returns this id ");

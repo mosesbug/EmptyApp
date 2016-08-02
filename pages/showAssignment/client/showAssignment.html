@@ -16,6 +16,7 @@
 
 	<h1> {{metadata.title}}</h1>
 	Instructions: {{metadata.text}}<br>
+	{{#if showAudio}}
 	<audio controls>
 
 
@@ -23,6 +24,7 @@
 		<source src="{{url}}" type="audio/wav">
 
 		</audio>
+		{{/if}}
 
 		<h3>Respond to questions, then submit the assignment.</h3>
 
@@ -54,10 +56,11 @@
 		<h1> {{a.metadata.title}} </h1>
 		<p>Assignment Description/instructions: {{a.metadata.text}}</p>
 		<br>
-
+		{{#if audio a}}
 		<audio controls>
 			<source src="{{a.url}}" type="audio/wav">
 		</audio>
+		{{/if}}
 		<br>
 		{{/each}}
 
@@ -66,9 +69,11 @@
 		{{#each q in questions}}
 		<h2>Question {{q.metadata.question}}</h2>
 		{{q.metadata.text}}<br>
+		{{#if q.metadata.audio}}
 		<audio controls>
 			<source src="{{q.url}}" type="audio/wav">
 		</audio>
+		{{/if}}
 		<br>
 		{{#each a in answers q}}
 			<h3>Student response:</h3> 
@@ -117,11 +122,13 @@
 	<template name="answerQuestion">
 		<h2> Question {{metadata.question}}</h2>
 		<h4>{{metadata.text}}</h4>
+		{{#if metadata.audio}}
 		<audio controls>
 
 		<source src="{{url}}" type="audio/wav">
 
 		</audio>
+		{{/if}}
 		<br>
 		{{#if showText}}
 		<div class="form-group">
