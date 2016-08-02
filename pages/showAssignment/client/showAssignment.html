@@ -61,16 +61,17 @@
 		<br>
 		{{/each}}
 
-		<h2>Student Response:</h2>
+		
 		
 		{{#each q in questions}}
 		<h2>Question {{q.metadata.question}}</h2>
+		{{q.metadata.text}}<br>
 		<audio controls>
 			<source src="{{q.url}}" type="audio/wav">
 		</audio>
 		<br>
 		{{#each a in answers q}}
-			Student: <br>
+			<h3>Student response:</h3> 
 			{{a.text}}<br>
 			{{#if showAudio q}}
 			{{a.metadata.text}}<br>
@@ -148,5 +149,7 @@
 		</div>
 		{{/if}}
 		<button class="js-submit btn btn-lg btn-info">Submit</button>
-		<br><br><br><br><br><br><br><br>
+
+		<br><br><br><br><br><br><br><br><br>
+
 	</template>

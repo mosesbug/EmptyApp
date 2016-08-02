@@ -7,6 +7,34 @@
 	<div class="row">
 				<form>
 
+
+
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></button>
+
+					<!-- Modal -->
+					<div id="myModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">How To Create An Assignment</h4>
+								</div>
+								<div class="modal-body">
+									<p>Some text in the modal.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+					<br>
 					<div class="form-group">
 								<label>Title</label>
 								<input type="text" placeholder="Enter Title" class="js-title form-control">
@@ -17,6 +45,13 @@
   							<textarea class="js-text form-control" rows="5" id="availability"></textarea>
 						</div>
 
+						
+						<select type= "text" class="form-control js-audio">
+      						<option> no audio</option>
+      						<option> audio</option>
+    						</select>
+						
+    						{{#if showAudio}}
 
 						<div class="col-md-4">
 
@@ -24,6 +59,7 @@
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
   						</div>
+
   				    <div>
 
 		  			<canvas id="analyser" width="1024" height="250"></canvas>
@@ -33,11 +69,15 @@
   					<div >
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
+
      			 <br>
-     			 <button class="js-submit btn btn-md pull-right btn-success">submit</button>
+     			 
+
 
 					</div>
-
+					{{/if}}
+					<br>
+					<button class="js-submit btn btn-md pull-right btn-success">submit</button>
 
 
 
@@ -61,7 +101,10 @@
 <template name="makeQuestions">
 
 		<h1>{{metadata.title}}</h1>
+
 		<h5>Instructions: {{metadata.text}}</h5>
+
+		{{#if showAudio}}
 		<audio controls>
 
 
@@ -69,6 +112,7 @@
 		<source src="{{url}}" type="audio/wav">
 
 		</audio>
+		{{/if}}
 		{{#each q in questions}}
 		<h4 style="color:white">Question {{q.metadata.question}}</h4>
 			<audio controls>
@@ -96,6 +140,7 @@
 
 							<form>
       						<h2> Question {{questionNumber}} </h2>
+
       						<div>
       						<label for="text">Instructions:</label>
       						<input type="text" class="js-text">
@@ -104,7 +149,6 @@
       						<option>text</option>
       						<option>audio</option>
       						<option>both</option>
-
 
     						</select>
 
@@ -130,5 +174,7 @@
 					</div>
 
 			{{/if}}
+
 					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 	</template>

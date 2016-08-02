@@ -15,14 +15,30 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
 		  	{{#if checkType}}
 			   <!-- nothing -->
-			{{else}}
+			   {{else}}
           		<li><a href="/courses">Join Course</a></li>
 		  	{{/if}}
-          <li><a href="/" class="logout">Logout</a></li>
+        
+          {{#if checkType}}
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true">Teacher</span>&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/" class="logout">Logout</a></li>
+          </ul>
+        </li>
+          {{else}}
+                      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true">Student</span>&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/" class="logout">Logout</a></li>
+          </ul>
+        </li>
+          {{/if}}
+    
         {{/if}}
 
 
