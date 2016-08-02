@@ -15,7 +15,7 @@
 	{{else}}
 
 	<h1> {{metadata.title}}</h1>
-	{{metadata.text}}<br>
+	Instructions: {{metadata.text}}<br>
 	<audio controls>
 
 
@@ -24,19 +24,21 @@
 
 		</audio>
 
-		<h1>submit your response here</h1>
+		<h3>Respond to questions, then submit the assignment.</h3>
 
 		{{#each q in questions}}
 		<ul>
 		<a href="/answerQuestion/{{q._id}}"> Question {{q.metadata.question}}</a> 
 		{{#if submitted q}}
-		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-ok" style="color:green" aria-hidden="true"></span>
+		{{else}}
+		<span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span>
 		{{/if}}
 		</ul>
 		{{/each}}
 
-		<button class="js-submit btn btn-lg btn-info">Submit Assignment</button>
-		<br><br><br><br><br><br><br>
+		<button class="js-submit btn btn-md pull-right btn-info">Submit Assignment</button>
+		<br><br><br><br><br><br><br><br><br>
 
 
 		{{/if}}
@@ -105,7 +107,7 @@
 
 		{{/each}}
 
-					<br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br><br>
 
 
 	</template>
@@ -147,5 +149,7 @@
 		</div>
 		{{/if}}
 		<button class="js-submit btn btn-lg btn-info">Submit</button>
+
 		<br><br><br><br><br><br><br><br><br>
+
 	</template>

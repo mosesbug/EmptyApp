@@ -21,6 +21,7 @@ Template.register.events({
       }
     }, function(error){
       if(error){
+        window.alert("Account already exists or one or more fields are empty.");
         console.log(error.reason);
         return;
       } else {

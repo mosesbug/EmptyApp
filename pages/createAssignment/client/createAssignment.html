@@ -1,13 +1,6 @@
 <template name="createAssignment">
 
 
-
-
-
-
-
-
-
 <div class="container">
     <h1 class="well">Create an Assignment</h1>
 	<div class="col-lg-12 well">
@@ -20,9 +13,10 @@
 							</div>
 
 					<div class="form-group">
-  							<label for="comment">Text:</label>
+  							<label for="comment">Description/Instructions:</label>
   							<textarea class="js-text form-control" rows="5" id="availability"></textarea>
 						</div>
+
 						
 						<select type= "text" class="form-control js-audio">
       						<option> no audio</option>
@@ -30,9 +24,10 @@
     						</select>
 						
     						{{#if showAudio}}
+
 						<div class="col-md-4">
 
-      						
+
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
   						</div>
@@ -47,18 +42,20 @@
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
 
+     			 <br>
      			 
-     			 
+
 
 					</div>
 					{{/if}}
-					<button class="js-submit btn btn-lg btn-info">submit</button>
+					<button class="js-submit btn btn-md pull-right btn-success">submit</button>
 
-						
-  						
-						
-					
-					
+
+
+
+
+
+
 
 					</form>
 				</div>
@@ -68,14 +65,16 @@
 
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-		<br><br><br><br><br><br><br><br><br>
+		<br><br><br>
 
 </template>
 
 <template name="makeQuestions">
 
 		<h1>{{metadata.title}}</h1>
-		<h4>{{metadata.text}}</h4>
+
+		<h5>Instructions: {{metadata.text}}</h5>
+
 		{{#if showAudio}}
 		<audio controls>
 
@@ -86,7 +85,7 @@
 		</audio>
 		{{/if}}
 		{{#each q in questions}}
-		<h2>Question {{q.metadata.question}}</h2>
+		<h4 style="color:white">Question {{q.metadata.question}}</h4>
 			<audio controls>
 
 
@@ -96,24 +95,40 @@
 		</audio>
 
 		{{/each}}
-		<br>
-		<button class="js-add-question">Add a question</button>
-			
+		<br><br>
+
+			<button type="button" class="js-add-question pull-left btn btn-md" >
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
+			</button>
+
+
+
 		{{#if showQuestion}}
+		<br><br>
 
 			<div class="col-md-4">
+			<div class="form-group">
 
-
+							<form>
       						<h2> Question {{questionNumber}} </h2>
-      						<label for="text">question description:</label>
-      						<input type="text" class="js-text"><br>
-      						<br> Submission Type<select type= "text" class="form-control js-type">
-      						<option> text</option>
-      						<option> audio</option>
-      						<option> both</option>
+
+      						<div>
+      						<label for="text">Instructions:</label>
+      						<input type="text" class="js-text">
+      						<label for="text">Student Response Type:</label>
+      						<select type= "text" class="form-control js-type">
+      						<option>text</option>
+      						<option>audio</option>
+      						<option>both</option>
+
     						</select>
+
+    						</div>
+    						</form>
+    						<br>
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
+  						</div>
   						</div>
   				    <div>
 
@@ -124,10 +139,13 @@
   					<div >
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-     			 <button class="js-enter btn btn-lg btn-info">Enter</button>
+     			 <br>
+     			 <button class="js-enter btn btn-lg pull-left btn-primary">Submit</button>
 
 					</div>
 
 			{{/if}}
-					<br><br><br><br><br><br>
+
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 	</template>
