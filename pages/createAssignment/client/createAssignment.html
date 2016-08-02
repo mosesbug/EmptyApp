@@ -24,13 +24,19 @@
   							<textarea class="js-text form-control" rows="5" id="availability"></textarea>
 						</div>
 						
-
+						<select type= "text" class="form-control js-audio">
+      						<option> no audio</option>
+      						<option> audio</option>
+    						</select>
+						
+    						{{#if showAudio}}
 						<div class="col-md-4">
 
       						
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
   						</div>
+
   				    <div>
 
 		  			<canvas id="analyser" width="1024" height="250"></canvas>
@@ -40,11 +46,13 @@
   					<div >
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
-     			 <button class="js-submit btn btn-lg btn-info">submit</button>
+
+     			 
+     			 
 
 					</div>
-					
-
+					{{/if}}
+					<button class="js-submit btn btn-lg btn-info">submit</button>
 
 						
   						
@@ -68,6 +76,7 @@
 
 		<h1>{{metadata.title}}</h1>
 		<h4>{{metadata.text}}</h4>
+		{{#if showAudio}}
 		<audio controls>
 
 
@@ -75,6 +84,7 @@
 		<source src="{{url}}" type="audio/wav">
 
 		</audio>
+		{{/if}}
 		{{#each q in questions}}
 		<h2>Question {{q.metadata.question}}</h2>
 			<audio controls>
@@ -95,9 +105,9 @@
 
 
       						<h2> Question {{questionNumber}} </h2>
-      						<label for="text">Text:</label>
-      						<input type="text" class="js-text">
-      						<select type= "text" class="form-control js-type">
+      						<label for="text">question description:</label>
+      						<input type="text" class="js-text"><br>
+      						<br> Submission Type<select type= "text" class="form-control js-type">
       						<option> text</option>
       						<option> audio</option>
       						<option> both</option>
@@ -119,5 +129,5 @@
 					</div>
 
 			{{/if}}
-					<br><br><br><br>
+					<br><br><br><br><br><br>
 	</template>

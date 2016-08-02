@@ -105,6 +105,21 @@ Template.createAssignment.events({
     event.preventDefault();
     const title= $(".js-title").val();
     const text= $(".js-text").val();
+    const audio= $(".js-audio").val();
+    if (audio=="no audio"){
+      File= new FS.File({});
+      File.metadata={
+      userId:Meteor.userId(),
+      title:title,
+      text:text,
+      course:this._id,
+      showAudio: false,
+      posted: false
+
+      }
+    }
+
+    else{
     console.dir(this._id);
     console.log("test what this contains");
     console.dir(this);
@@ -115,9 +130,10 @@ Template.createAssignment.events({
       title:title,
       text:text,
       course:this._id,
+      showAudio:true,
       posted: false
     }
-
+  }
    const assignmentId= Assignments.insert(File);
     Router.go('makeQuestions',{"_id":assignmentId._id});
     //console.dir(blob);
