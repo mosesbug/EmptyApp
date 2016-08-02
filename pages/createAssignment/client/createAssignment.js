@@ -3,6 +3,7 @@ Template.makeQuestions.onCreated(function() {
   this.state.setDefault({
     //questions: 1,
     showQuestion: false,
+    audio: false,
   });
 });
 
@@ -16,6 +17,16 @@ Template.makeQuestions.onCreated(function() {
 		instance.state.set("questions", 1+b);
 
 	},
+
+	"change .js-audio": function(event, instance){
+		event.preventDefault();
+		const c= instance.state.get("audio");
+		if (c==false){
+			instance.state.set("audio", true);
+		} else{
+			instance.state.set("audio", false);
+		}
+	}
 
 });
 
@@ -45,6 +56,11 @@ Template.makeQuestions.onCreated(function() {
 
 	showAudio: function(){
 		return this.metadata.showAudio
+	},
+
+	audio: function(){
+		const instance= Template.instance();
+		return instance.state.get("audio")
 	}
 
 
