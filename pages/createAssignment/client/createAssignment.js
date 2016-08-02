@@ -41,8 +41,42 @@ Template.makeQuestions.onCreated(function() {
 
 	questions: function(){
 		return Questions.find({"metadata.assignment": this._id})
+	},
+
+	showAudio: function(){
+		return this.metadata.showAudio
 	}
 
 
+
+});
+
+ Template.createAssignment.onCreated(function() {
+  this.state = new ReactiveDict();
+  this.state.setDefault({
+    //questions: 1,
+    showAudio: false,
+  });
+});
+
+  Template.createAssignment.helpers({
+  	showAudio: function(){
+  		const instance= Template.instance();
+		return instance.state.get("showAudio")
+  	}
+  });
+
+   Template.createAssignment.events({
+	"change .js-audio": function(event, instance){
+		event.preventDefault();
+		const c = instance.state.get("showAudio");
+		console.dir(c);
+		if(c==true){
+		instance.state.set("showAudio", false);
+		} else{
+			instance.state.set("showAudio", true);
+		}
+
+	},
 
 });

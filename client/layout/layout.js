@@ -4,6 +4,7 @@ Template.layout.events({
     'click .logout': function(event){
         event.preventDefault();
 				Meteor.logout();
+        Router.go("/")
     },
 //**********Speech Recognition Events*****************************
       "click #rec":function(event){
