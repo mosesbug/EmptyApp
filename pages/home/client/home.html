@@ -14,8 +14,8 @@
 
   <h2><strong>My classes</strong></h2>
   {{#if checkType}}
-  <div class= "col-md-3">
-  <table class="table table-bordered table-hover">
+  <div class= "col-md-12">
+  <table class="table table table-hover">
     <thead>
       <tr><th>Class</th></tr>
     </thead>
@@ -29,10 +29,10 @@
   </div>
 
   {{else}}
-  <div class="col-md-6">
-  <table class="table table-bordered table-hover">
+  <div class="col-md-12">
+  <table class="table table table-hover">
     <thead>
-      <tr><th>Class</th><th>Instructor</th><th>Incompleted Assignments</th></tr>
+      <tr><th style="color:green">Class</th><th style="color:purple">Instructor</th><th style="color:yellow">Incomplete Assignments</th></tr>
     </thead>
     <tbody>
     {{#each class in myClasses}}

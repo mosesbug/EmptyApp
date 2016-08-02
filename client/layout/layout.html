@@ -35,6 +35,7 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
+        <li><a href="/review">Contact</a></li>
         </ul>
 
       </div><!-- /.navbar-collapse -->
@@ -56,15 +57,26 @@
   <div class="navbar navbar-inverse navbar-fixed-bottom">
     <style type="text/css">
         h4{color:green;}
-        p{color:red;}
+        p{}
+        #speech-div{color:red;
+                    position: relative;
+                    right: 30px;
+        }
+
     </style>
+
+
+    <div class="nav navbar-nav navbar-right" id="speech-div">
+
+    <input id="speech" type="text">
+    <button id="rec" class="btn">
+        <img src="mic1231.png" width="30px" height="30px" />
+    </button>
+
+    </div>
 
     <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a>
 
-
-      <h4>  Speech recognition Demo </h4>
-      <input id="speech" type="text">
-      <button id="rec" class="btn">Speak</button>
 
     </p>
 

@@ -61,7 +61,7 @@
 <template name="makeQuestions">
 
 		<h1>{{metadata.title}}</h1>
-		<h4>{{metadata.text}}</h4>
+		<h5>Instructions: {{metadata.text}}</h5>
 		<audio controls>
 
 
@@ -70,7 +70,7 @@
 
 		</audio>
 		{{#each q in questions}}
-		<h2>Question {{q.metadata.question}}</h2>
+		<h4 style="color:white">Question {{q.metadata.question}}</h4>
 			<audio controls>
 
 

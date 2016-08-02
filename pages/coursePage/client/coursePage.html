@@ -42,7 +42,7 @@
 		{{#if submitted a}}
 
 			<a href="/showSubmission/{{lookupMySubmission a._id}}"> {{a.metadata.title}}</a>
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok" style="color:green" aria-hidden="true"></span>
 		{{else}}
 
 			{{#if checkType}}
@@ -50,7 +50,7 @@
 			({{numSubmitted a._id}} submitted)
 			{{else}}
 			<a href="/showAssignment/{{ a._id}}"> {{a.metadata.title}}</a>
-			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"></span>
 			{{/if}}
 
 		{{/if}}

@@ -2,6 +2,7 @@ var x;
 var max;
 var random;
 var array;
+var otherWay = false;
 
 Template.flashcards.helpers({
 	flashcards:function(){
@@ -30,6 +31,7 @@ Template.flashcardSet.helpers({
 })
 
 Template.practiceFlashcards.onCreated(function() {
+	otherWay = false;
   this.state = new ReactiveDict();
   	console.log(this);
 	console.log("working");
@@ -103,51 +105,65 @@ Template.flashcardSet.events({
 		$(".js-wordTwo").val("");
 
 	},
-
-	//  "click .js-submit": function(event){
-	//  	event.preventDefault();
-	//  	console.log("worked");
-	// 	const guess = $(".js-guess").val();
-
-	// 	if (guess == x.wordTwo) {
-	// 		window.alert("Correct!");
-	// 		console.log("correct");
-	// 	} else {
-	// 		window.alert("Incorrect. Try again");
-	// 	}
-
-	// 	console.log(guess);
-
-
-	// },
 })
 
+Template.pairRow.events({
+
+	"click .js-delete": function(event){
+		event.preventDefault();
+		var r = confirm("Are you sure you would like to delete pair?");
+
+		if (r == true) {
+			console.log("worked");
+			console.dir(this);
+			FlashcardPairs.remove(this.pair._id);
+		}
+
+
+	},
+
+})
 
 Template.practiceFlashcards.events({
 
-	//  "click .js-addPair": function(event){
-	//  	event.preventDefault();
-	// 	const wordOne = $(".js-wordOne").val();
-	// 	const wordTwo = $(".js-wordTwo").val();
-	// 	const pair = {flashcardId:this._id, wordOne:wordOne, wordTwo:wordTwo}; 
-	// 	console.dir(pair);
-	// 	FlashcardPairs.insert(pair);
-
-	// 	$(".js-wordOne").val("");
-	// 	$(".js-wordTwo").val("");
-
-	// },
 
 	 "click .js-showAnswer": function(event, instance){
 	 	event.preventDefault();
 	 	console.log("worked");
 
-		window.alert("The correct answer was: " + x.wordTwo);
+	 	if (otherWay == false) {
+	 		window.alert("The correct answer was: " + x.wordTwo);
+	 		random = Math.floor((Math.random() * max));
+			x = array[random];
+			$(".js-guess").val("");
+			instance.state.set("pair", x.wordOne);
+	 	} else {
+	 		window.alert("The correct answer was: " + x.wordOne);
+	 		random = Math.floor((Math.random() * max));
+			x = array[random];
+			$(".js-guess").val("");
+			instance.state.set("pair", x.wordTwo);
+	 	}
 
-		random = Math.floor((Math.random() * max));
-		x = array[random];
-		$(".js-guess").val("");
-		instance.state.set("pair", x.wordOne);
+		// window.alert("The correct answer was: " + x.wordTwo);
+
+		// random = Math.floor((Math.random() * max));
+		// x = array[random];
+		// $(".js-guess").val("");
+		// instance.state.set("pair", x.wordOne);
+	},
+
+	"click .js-switch": function(event, instance){
+	 	if (otherWay == false) {
+	 		otherWay = true;
+	 		instance.state.set("pair", x.wordTwo);
+	 	} else {
+	 		otherWay = false;
+	 		instance.state.set("pair", x.wordOne);
+	 	}
+
+	 	$(".js-guess").val("");
+	 	console.log(otherWay);
 	},
 
 	 "click .js-submit": function(event, instance){
@@ -156,13 +172,20 @@ Template.practiceFlashcards.events({
 	 	console.log("worked");
 		const guess = $(".js-guess").val();
 
-		if (guess == x.wordTwo) { 
+		if (guess.toLowerCase() == x.wordTwo.toLowerCase() && otherWay == false) { 
 			window.alert("Correct!");
 			console.log("correct");
 			random = Math.floor((Math.random() * max));
 			x = array[random];
 			$(".js-guess").val("");
 			instance.state.set("pair", x.wordOne);
+		} else if (guess.toLowerCase() == x.wordOne.toLowerCase() && otherWay == true) {
+			window.alert("Correct!");
+			console.log("correct");
+			random = Math.floor((Math.random() * max));
+			x = array[random];
+			$(".js-guess").val("");
+			instance.state.set("pair", x.wordTwo);
 		} else {
 			window.alert("Incorrect. Try again");
 		}
@@ -171,4 +194,5 @@ Template.practiceFlashcards.events({
 
 
 	},
+
 })
