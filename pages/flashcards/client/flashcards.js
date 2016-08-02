@@ -105,40 +105,27 @@ Template.flashcardSet.events({
 		$(".js-wordTwo").val("");
 
 	},
-
-	//  "click .js-submit": function(event){
-	//  	event.preventDefault();
-	//  	console.log("worked");
-	// 	const guess = $(".js-guess").val();
-
-	// 	if (guess == x.wordTwo) {
-	// 		window.alert("Correct!");
-	// 		console.log("correct");
-	// 	} else {
-	// 		window.alert("Incorrect. Try again");
-	// 	}
-
-	// 	console.log(guess);
-
-
-	// },
 })
 
+Template.pairRow.events({
+
+	"click .js-delete": function(event){
+		event.preventDefault();
+		var r = confirm("Are you sure you would like to delete pair?");
+
+		if (r == true) {
+			console.log("worked");
+			console.dir(this);
+			FlashcardPairs.remove(this.pair._id);
+		}
+
+
+	},
+
+})
 
 Template.practiceFlashcards.events({
 
-	//  "click .js-addPair": function(event){
-	//  	event.preventDefault();
-	// 	const wordOne = $(".js-wordOne").val();
-	// 	const wordTwo = $(".js-wordTwo").val();
-	// 	const pair = {flashcardId:this._id, wordOne:wordOne, wordTwo:wordTwo}; 
-	// 	console.dir(pair);
-	// 	FlashcardPairs.insert(pair);
-
-	// 	$(".js-wordOne").val("");
-	// 	$(".js-wordTwo").val("");
-
-	// },
 
 	 "click .js-showAnswer": function(event, instance){
 	 	event.preventDefault();
@@ -207,4 +194,5 @@ Template.practiceFlashcards.events({
 
 
 	},
+
 })
