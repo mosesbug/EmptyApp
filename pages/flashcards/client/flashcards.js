@@ -105,16 +105,24 @@ Template.flashcardSet.events({
 		$(".js-wordTwo").val("");
 
 	},
-
-	"click .js-delete": function(event){
-	 	event.preventDefault();
-		console.log("worked");
-		console.dir(this);
-		FlashcardPairs.remove(this.f._id);
-
-	},
 })
 
+Template.pairRow.events({
+
+	"click .js-delete": function(event){
+		event.preventDefault();
+		var r = confirm("Are you sure you would like to delete pair?");
+
+		if (r == true) {
+			console.log("worked");
+			console.dir(this);
+			FlashcardPairs.remove(this.pair._id);
+		}
+
+
+	},
+
+})
 
 Template.practiceFlashcards.events({
 

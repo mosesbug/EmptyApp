@@ -32,18 +32,6 @@
 		</div>
 	</form>
 
-	<!-- <form role="form">
-		<div class="form-group col-md-6">
-			<input type="setName" class="form-control js-wordOne" id="setName">
-		</div>
-		<div class="form-group col-md-6">
-			<input type="setName" class="form-control js-wordTwo" id="setName">
-		</div>
-	</form>
-
-	<button type="button" class="pull-right btn btn-primary" aria-label="Right Align">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-	</button> -->
 	<br>
 
 	<button type="button" class="js-submit pull-left btn btn-success">
@@ -53,6 +41,7 @@
 	<br><br><br>
 
 </template>
+
 
 <template name="flashcardSet">
 
@@ -68,7 +57,6 @@
 </div>
 
 
-			<!-- <p>{{flashcardPairs.wordOne}}</p> -->
 
 
 			<form role="form">
@@ -91,38 +79,33 @@
 
 	<h2>Pairs:</h2>
 
+<br>
+
 	<div class="col-md-12">
-	<table class="table table">
+	<table class="table">
 			<thead>
 				<tr><th>Hint</th><th>Answer</th><th></th></tr>
 			</thead>
-			{{#each f in flashcardPairs}}
-			  <tr>
-    <td><h5>{{f.wordOne}}</h5></td>
-    <td><h5>{{f.wordTwo}}</h5></td>
+				{{#each p in flashcardPairs}}
+				<tr>
+		{{> pairRow  pair=p}}
+		</tr>
+			{{/each}}
+  </table>
+  </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</template>
+
+<template name="pairRow">
+
+    <td><h5>{{pair.wordOne}}</h5></td>
+    <td><h5>{{pair.wordTwo}}</h5></td>
    	<td><h5><span class="js-delete glyphicon glyphicon-trash" style="color:blue" aria-hidden="true"></span></h5></td> 
-  </tr>
-  {{/each}}
 
-		</table>
-	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-<!-- 
-	<form role="form">
-		<div class="form-group">
-			<input type="js-guess" class="form-control js-guess" id="js-guess">
-		</div>
-	</form>
-
-
-	<button type="button" class="js-submit pull-right btn btn-warning">
-		Submit
-	</button> -->
-
-	<br><br><br><br><br><br><br><br>
 </template>
 
 <template name="practiceFlashcards">
