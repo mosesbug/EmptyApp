@@ -607,7 +607,17 @@ function startRecognition() {
      send();
    }
    function updateRec() {
-     $recBtn.text(recognition ? "Stop" : "Speak");
+     $recBtn.text(recognition ? "..." : "");
+
+     if(!recognition) {
+       var elem = document.createElement("img");
+       elem.src= 'http://i.imgur.com/l5S4LZ2.png';
+       elem.width= '30';
+       elem.height= '30';
+       document.getElementById("rec").appendChild(elem)
+     } else {
+
+     }
    }
    function send() {
      var text = $speechInput.val();
