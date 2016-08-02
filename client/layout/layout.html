@@ -22,7 +22,7 @@
 			   {{else}}
           		<li><a href="/courses">Join Course</a></li>
 		  	{{/if}}
-        
+
           {{#if checkType}}
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true">Teacher</span>&nbsp;<span class="caret"></span></a>
@@ -38,7 +38,7 @@
           </ul>
         </li>
           {{/if}}
-    
+
         {{/if}}
 
 
@@ -70,24 +70,29 @@
         #speech-div{color:red;
                     position: relative;
                     right: 30px;
+                    margin-top:10px;
+        }
+
+        #rec{
+          padding: 1px 10px;
         }
 
     </style>
 
 
+
+
+    <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a>
+    </p>
+
     <div class="nav navbar-nav navbar-right" id="speech-div">
 
     <input id="speech" type="text">
     <button id="rec" class="btn">
-        <img src="mic1231.png" width="30px" height="30px" />
+        <img src="/mic1231.png" width="30px" height="30px" />
     </button>
 
     </div>
-
-    <p class="navbar-center navbar-text">Brought to you by <a href="https://www.haxball.com">Gabe, Mikey, Moses, and Chanwoo</a>
-
-
-    </p>
 
 
   </div>
