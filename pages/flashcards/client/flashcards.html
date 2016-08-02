@@ -91,15 +91,16 @@
 
 	<h2>Pairs:</h2>
 
-	<div class="col-md-6">
-	<table class="table table-bordered">
+	<div class="col-md-12">
+	<table class="table table">
 			<thead>
-				<tr><th>Hint</th><th>Answer</th></tr>
+				<tr><th>Hint</th><th>Answer</th><th></th></tr>
 			</thead>
 			{{#each f in flashcardPairs}}
 			  <tr>
     <td><h5>{{f.wordOne}}</h5></td>
-    <td><h5>{{f.wordTwo}}</h5></td> 
+    <td><h5>{{f.wordTwo}}</h5></td>
+   	<td><h5><span class="js-delete glyphicon glyphicon-trash" style="color:blue" aria-hidden="true"></span></h5></td> 
   </tr>
   {{/each}}
 
