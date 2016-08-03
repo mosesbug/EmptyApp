@@ -20,10 +20,12 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">How To Create An Assignment</h4>
+									<h4 style="color : purple" class="modal-title">How To Create An Assignment</h4>
 								</div>
 								<div class="modal-body">
-									<p>Some text in the modal.</p>
+									<p>After creating an assignment you will be able to create individual questions with or without audio. You will also be able to specify for each individual question whether the student will respond with text or audio or both</p>
+									<br>
+									<p>If you like, you can create one dialog/audio file on this page, then have each individual question created afterward be related to this dialog</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -115,6 +117,8 @@
 		{{/if}}
 		{{#each q in questions}}
 		<h4 style="color:white">Question {{q.metadata.question}}</h4>
+			{{q.metadata.text}}<br>
+			{{#if q.metadata.audio}}
 			<audio controls>
 
 
@@ -122,6 +126,7 @@
 		<source src="{{q.url}}" type="audio/wav">
 
 		</audio>
+		{{/if}}
 
 		{{/each}}
 		<br><br>
@@ -151,14 +156,25 @@
       						<option>both</option>
 
     						</select>
+    						<label for="text"> Add audio to question</label>
+    						<select type= "text" class="form-control js-audio">
+    							<option> no audio</option>
+    							<option> audio</option>
+    						</select>
+
 
     						</div>
     						</form>
     						<br>
+      						
+    						{{#if audio}}
       						<img id="record" src="/img/mic128.png">
       						<a id="save" href="#"><img src="/img/save.svg"></a>
+      						{{/if}}
   						</div>
   						</div>
+  				    
+  						{{#if audio}}
   				    <div>
 
 		  			<canvas id="analyser" width="1024" height="250"></canvas>
@@ -169,10 +185,11 @@
 
      			 <canvas id="wavedisplay" width="1024" height="250"></canvas>
      			 <br>
-     			 <button class="js-enter btn btn-lg pull-left btn-primary">Submit</button>
+     			
 
 					</div>
-
+					{{/if}}
+					 <button class="js-enter btn btn-lg pull-left btn-primary">Submit</button>
 			{{/if}}
 
 					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
