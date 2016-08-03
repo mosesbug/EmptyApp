@@ -98,7 +98,7 @@ Template.createAssignment.events({
     toggleRecording(document.getElementById("record"));
 
   },
-    
+
 
 
   "click .js-submit": function(event){
@@ -170,7 +170,7 @@ Template.answerQuestion.events({
   },
   "click .js-submit": function(event, template){
     event.preventDefault();
-    
+
     const x= Answers.findOne({"metadata.question": this._id})
     const y= TextAnswers.findOne({"question": this._id})
     if(x){
@@ -192,7 +192,7 @@ Template.answerQuestion.events({
 
       TextAnswers.insert(answer)
     } else{
-    
+
 
     //console.dir(File);
 
@@ -249,7 +249,7 @@ Template.makeQuestions.events({
 
     if(audio){
     //const title= $("").val();
-    //const text= $(".js-text").val(); 
+    //const text= $(".js-text").val();
 
     File.metadata= {
       ownerId:Meteor.userId(),
@@ -558,7 +558,7 @@ function toggleRecording( e ) {
         e.classList.add("recording");
         audioRecorder.clear();
         audioRecorder.record();
-        window.setTimeout(function(){toggleRecording(e);}, 10000);
+        window.setTimeout(function(){toggleRecording(e);}, 100000);
     }
 }
 
