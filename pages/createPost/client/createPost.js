@@ -171,8 +171,8 @@ Template.answerQuestion.events({
   "click .js-submit": function(event, template){
     event.preventDefault();
 
-    const x= Answers.findOne({"metadata.question": this._id})
-    const y= TextAnswers.findOne({"question": this._id})
+    const x= Answers.findOne({"metadata.question": this._id, "metadata.ownerId": Meteor.userId()})
+    const y= TextAnswers.findOne({"question": this._id, "ownerId": Meteor.userId()})
     if(x){
     Answers.remove({_id: x._id})
   }
