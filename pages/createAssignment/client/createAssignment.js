@@ -61,6 +61,10 @@ Template.makeQuestions.onCreated(function() {
 	audio: function(){
 		const instance= Template.instance();
 		return instance.state.get("audio")
+	},
+
+	questionAudio: function(q){
+		return q.metadata.audio
 	}
 
 

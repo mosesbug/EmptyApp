@@ -170,6 +170,15 @@ Template.answerQuestion.events({
   },
   "click .js-submit": function(event, template){
     event.preventDefault();
+    
+    const x= Answers.findOne({"metadata.question": this._id})
+    const y= TextAnswers.findOne({"question": this._id})
+    if(x){
+    Answers.remove({_id: x._id})
+  }
+    if(y){
+    TextAnswers.remove({_id: y._id})
+  }
     const title= $("").val();
     const text= $(".js-text").val();
     //const title= $("").val();
@@ -268,7 +277,8 @@ Template.makeQuestions.events({
     //console.dir(blob);
     const c = instance.state.get("showQuestion");
     console.dir(c);
-    instance.state.set("showQuestion", false);;
+    instance.state.set("showQuestion", false);
+    instance.state.set("audio", false);
   }
 
 
