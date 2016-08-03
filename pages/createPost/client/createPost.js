@@ -136,6 +136,7 @@ Template.createAssignment.events({
   }
    const assignmentId= Assignments.insert(File);
     Router.go('makeQuestions',{"_id":assignmentId._id});
+    location.reload();
     //console.dir(blob);
 
 
@@ -279,6 +280,7 @@ Template.makeQuestions.events({
     console.dir(c);
     instance.state.set("showQuestion", false);
     instance.state.set("audio", false);
+    location.reload()
   }
 
 
