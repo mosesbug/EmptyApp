@@ -56,15 +56,15 @@ Template.myClassesRow.helpers({
   },
 
   assignmentsNotSubmitted: function(courseId){
-      
+
       console.log("gabe is a hard worker")
       const total = Assignments.find({"metadata.course": courseId});
       console.dir(total.fetch());
       const submitted = Submissions.find({"courseId": courseId, "ownerId": Meteor.userId()});
       console.dir(submitted.fetch());
-      
+
         return total.count() - submitted.count();
-    
+
   },
 
   returnAssignments: function() {
@@ -74,6 +74,7 @@ Template.myClassesRow.helpers({
 });
 
 Template.registerHelper('checkType', () => {
+  var globalCourseId = ""
 
   if(Meteor.user() && Meteor.user().profile.userType === "teacher") {
       return true;
